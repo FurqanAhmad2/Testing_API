@@ -1,0 +1,15 @@
+@use "../../../styles/globalStyle" as style;
+
+.screenLoadingContainer {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  place-items: center;
+  min-height: 500px;
+}
+
+.content {
+  display: grid;
+  place-items: center;
+  gap: 10px;
+}

@@ -1,0 +1,29 @@
+@use "../../../styles/globalStyle" as style;
+
+.actionBtnContainer {
+  border-radius: 25px;
+  padding: 6px 25px;
+  letter-spacing: 1px;
+  font-size: 12px;
+}
+.actionBtnContainerOutline {
+  border: 2px solid style.$color1;
+  background-color: #fff;
+  color: style.$color1;
+
+  &:hover {
+    border: 2px solid style.$color1_dark;
+    background-color: style.$color1_dark;
+    color: #fff;
+  }
+}
+.actionBtnContainerFilled {
+  border: 2px solid style.$color1;
+  background-color: style.$color1;
+  color: #fff;
+
+  &:hover {
+    border: 2px solid style.$color1_dark;
+    background-color: style.$color1_dark;
+  }
+}

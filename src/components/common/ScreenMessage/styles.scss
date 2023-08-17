@@ -1,0 +1,22 @@
+@use "../../../styles/globalStyle" as style;
+
+.screenMessageContainer {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  place-items: center;
+  min-height: 500px;
+}
+
+.errorMessageContent {
+  display: grid;
+  place-items: center;
+  gap: 10px;
+  font-size: 40px;
+  color: rgb(31, 31, 31);
+  h2 {
+    font-size: 24px;
+    text-align: center;
+    color: black;
+  }
+}

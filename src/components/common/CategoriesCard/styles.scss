@@ -1,0 +1,45 @@
+@use "../../../styles/globalStyle" as style;
+
+.categoryCardBtn {
+  background-color: #fff;
+  border-radius: 15px;
+  border: 1px solid #dbe1e7;
+  padding-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .iconContainer {
+    padding: 26px 0;
+    font-size: 40px;
+    color: style.$color1;
+  }
+
+  .textContainer {
+    .heading {
+      padding: 0 10px;
+      font-size: 18px;
+      font-weight: 500;
+      color: style.$color1;
+    }
+  }
+
+  .jobNumberContainer {
+    display: grid;
+    justify-items: center;
+    align-items: flex-end;
+    margin-top: 10px;
+    height: 100%;
+    width: 100%;
+    .jobNumberContent {
+      background-color: style.$color2;
+      width: fit-content;
+      border-radius: 20px;
+      padding: 2px 30px;
+
+      p {
+        color: #fff;
+      }
+    }
+  }
+}
