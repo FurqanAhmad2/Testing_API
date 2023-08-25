@@ -389,14 +389,18 @@ export const setEmployeeProfile = async (token, dispatch) => {
 
 export const getEmployeeProfile = async (params) => {
   const token = params.queryKey[1];
+  console.log(token)
   const res = await axios.get(`${BaseUrl}/employee/data/`, {
     headers: {
       Authorization: `Token ${token}`,
       apikey,
     },
   });
+  console.log(res.data)
   return res.data;
 };
+
+
 
 export const editEmployeeProfile = async (
   token,
@@ -2038,3 +2042,41 @@ export const postApikey = async (token) => {
     return "FAILED";
   }
 };
+
+
+
+
+//submit KYC
+export const submitKYCData = async (token,documentNumber, selectedFile, selectedID, otherDocument) => {
+  try {
+    const formData = new FormData();
+    formData.append("kycNumber", documentNumber);
+    formData.append("file", selectedFile);
+
+    if (selectedID === "Others...") {
+      formData.append("kycType", otherDocument);
+    } else {
+      formData.append("kycType", selectedID);
+    }
+
+    // const response = await axios.post("/user/kyc", formData);
+
+    const response = await axios.post(
+      `${BaseUrl}/user/kyc/`,
+      formData,
+      {
+        headers: {
+          Authorization: `Token ${token}`,
+          apikey: apikey,
+        },
+      }
+    );
+    console.log(response.data);
+
+  } catch (error) {
+    console.error("Error:", error);
+
+  }
+};
+
+

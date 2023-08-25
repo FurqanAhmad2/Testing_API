@@ -56,6 +56,12 @@ const ProfileLayout = (props) => {
     navigate("/kyc-verification");
   };
 
+  const handleExpe = () => {
+    navigate("/profile/experience");
+  };
+
+
+
   return (
     <div className="profileContainer">
       <div className="profileHeaderContainer shadow">
@@ -69,7 +75,7 @@ const ProfileLayout = (props) => {
               <div className="flex flex-row py-2">
               <h2 className="font-bold text-4xl">{`${profile?.first_name} ${profile?.last_name}`}
               </h2>
-              {profile?.haskyc === true  ? (
+              {profile?.hasKyc === true  ? (
   <img
     src={Imgv}
     className=""
@@ -150,7 +156,7 @@ const ProfileLayout = (props) => {
               
               <button
                 className="kycButton actionBtnContainerFilled"
-                onClick={handleKYCVerification}
+                onClick={handleExpe}
               >
                 <span>Upload {profile?.remaining[0]}</span>
               </button>
@@ -160,7 +166,7 @@ const ProfileLayout = (props) => {
   className="mx-56 py-2 px-6 bg-blue-500 hover:bg-blue-600 text-white rounded-md shadow-md transition duration-300 ease-in-out focus:outline-none"
   onClick={handleKYCVerification}
 >
-  <span>Upload {profile?.remaining[0]}</span>
+  <span>Upload KYB</span>
 </button>
 
           )}

@@ -4,13 +4,17 @@ import {
   faToggleOff,
   faToggleOn,
 } from "@fortawesome/free-solid-svg-icons";
-import { useContext, useState } from "react";
+import { useContext, useState,useEffect } from "react";
 import Breadcrumbs from "../components/common/Breadcrumbs/breadcrumbs";
 import { getSubscriptions, postSubscription } from "../apicalls";
 import { useQuery } from "@tanstack/react-query";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { getEmployeeProfile, signout } from "../apicalls";
 import { toast } from "react-toastify";
+import { PaystackButton } from 'react-paystack';
+import paystackKey from './ConfigurePaystack'; // Make sure to adjust the path as needed
+
 
 const Plans = () => {
   const navigate = useNavigate();
@@ -26,16 +30,81 @@ const Plans = () => {
     queryFn: getSubscriptions,
   });
 
+  const {
+    isError,
+    isLoading: profileLoading,
+    data: profile,
+  } = useQuery({
+    queryKey: ["Profile", token],
+    queryFn: getEmployeeProfile,
+  });
+
+
+  const generateReference = () => {
+    // Generate a unique reference based on your logic
+    return `ref_${Date.now()}`;
+  };
+
+  
+  const handlePaystackResponse = (response) => {
+    if (response.status === 'success') {
+      // Payment was successful
+      // You can perform additional actions here, such as updating the user's subscription status
+      console.log('Payment successful:', response.reference);
+    } else {
+      // Payment failed or was canceled
+      console.log('Payment failed:', response.reference);
+    }
+  };
+
+
+  
+  
+
   const HandleClick = (id) => {
     if (!token) {
       toast("Please Sign In");
       navigate("/signin");
     }
-    if (id === subscriptionDetails?.data?.subcription?.id) {
+
+    if (id === subscriptionDetails?.data?.subcription?.id) 
+    {
       toast("You are on this plan currently");
+      console.log("subscriptionDetails")
+      console.log(subscriptionDetails)
+      console.log("subscriptionDetails")
       navigate("/profile/currentplan");
-    } else {
-      postSubscription({ subscription: id }, token, toast, navigate);
+    } 
+
+
+    else 
+    {
+      console.log("ok")
+      console.log(id)
+      console.log(profile?.email)
+      const amountInKobo = 2500; // $25 in kobo
+      const email = profile?.email;
+      const metadata = { planId: id };
+      console.log("ok")
+
+    return (
+      <PaystackButton
+        text="Select & Pay"
+        className="priceBtn"
+        callback={(response) => handlePaystackResponse(response)}
+        close={() => console.log('Payment closed.')}
+        disabled={false}
+        embed={false}
+        reference={generateReference()}
+        email={profile?.email}
+        amount={amountInKobo}
+        metadata={metadata}
+        paystackkey={paystackKey}
+      />
+    );
+
+
+      // postSubscription({ subscription: id }, token, toast, navigate);
     }
   };
 
@@ -96,14 +165,16 @@ const Plans = () => {
               </div>
 
               <div className="priceBtnContainer">
-                <button
+                {/* <button
                   className="priceBtn"
                   onClick={() => {
                     HandleClick(2);
                   }}
                 >
                   Select
-                </button>
+                </button> */}
+
+              {HandleClick(2)}
               </div>
             </div>
 
@@ -140,14 +211,15 @@ const Plans = () => {
               </div>
 
               <div className="priceBtnContainer">
-                <button
+                {/* <button
                   className="priceBtn"
                   onClick={() => {
                     HandleClick(3);
                   }}
                 >
                   Select
-                </button>
+                </button> */}
+                    {HandleClick(3)}
               </div>
             </div>
 
@@ -228,14 +300,16 @@ const Plans = () => {
               </div>
 
               <div className="priceBtnContainer">
-                <button
+                {/* <button
                   className="priceBtn"
                   onClick={() => {
                     HandleClick(5);
                   }}
                 >
                   Select
-                </button>
+                </button> */}
+
+              {HandleClick(5)}
               </div>
             </div>
 

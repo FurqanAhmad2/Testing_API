@@ -3,7 +3,14 @@ import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCloudDownloadAlt } from "@fortawesome/free-solid-svg-icons";
 import { toast } from 'react-toastify';
+import { useContext, useEffect } from "react";
+import { AuthContext } from "../context/AuthContext";
 import axios from 'axios';
+
+import {
+  submitKYCData
+} from "../../src/apicalls";
+
 
 const KYCVerification = () => {
   const acceptedIDs = [
@@ -22,6 +29,8 @@ const KYCVerification = () => {
   const [otherDocument, setOtherDocument] = useState("");
   const [documentNumber, setDocumentNumber] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
+
+  const { token, subscriptionDetails } = useContext(AuthContext);
 
   const handleIDSelection = (e) => {
     const { value } = e.target;
@@ -60,44 +69,46 @@ const KYCVerification = () => {
       toast.error("Please select an ID type.");
       return;
     }
-  
+
     if (selectedID === "Others..." && otherDocument === "") {
       toast.error("Please enter the document name.");
       return;
     }
-  
+
     if (documentNumber === "") {
       toast.error("Please enter the document number.");
       return;
     }
-  
+
     if (!selectedFile) {
       toast.error("Please upload a file.");
       return;
     }
-  
+
     // Submit the form data
     try {
       const formData = new FormData();
       formData.append("kycNumber", documentNumber);
       formData.append("file", selectedFile);
-  
+
       if (selectedID === "Others...") {
         formData.append("kycType", otherDocument);
       } else {
         formData.append("kycType", selectedID);
       }
-  
-      const response = await axios.post("/user/kyc", formData);
-      console.log(response.data);
+
+      // Call the function with the necessary arguments
+      const res = submitKYCData(token, documentNumber, selectedFile, selectedID, otherDocument);
+
+
       toast.success("KYC data submitted successfully.");
-      navigate("/dashboard");
+      navigate("/profile");
     } catch (error) {
       console.error(error);
       toast.error("Error occurred while submitting KYC data.");
     }
   };
-  
+
 
   return (
     <div>
@@ -115,14 +126,17 @@ const KYCVerification = () => {
           comply with legal and regulatory requirements.
         </p>
       </div>
+
       <div className="kycCenterContainer">
-        <div className="idTypeContainer">
-          <label htmlFor="idType" style={{ marginRight: "80px", fontSize: "16px", paddingRight: "37px" }}>
+
+
+        <div className="file-kyc">
+          <label htmlFor="Label" className="label_01" >
             ID type:
           </label>
           <select
-            id="idType"
-            className="kycDropdown"
+            id=""
+            className="Kyc_sel_input"
             value={selectedID}
             onChange={handleIDSelection}
           >
@@ -133,27 +147,34 @@ const KYCVerification = () => {
             ))}
           </select>
         </div>
+
+
+
         {selectedID === "Others..." && (
-          <div className="otherDocumentContainer">
-            <label htmlFor="otherDocument" style={{ marginRight: "15px", fontSize: "16px", paddingRight: "20px" }}>
+          <div className="">
+            <label htmlFor="">
               Document Name:
             </label>
             <input
               type="text"
               id="otherDocument"
+            className="Kyc_sel_input"
+      
               value={otherDocument}
               onChange={handleOtherDocument}
               placeholder="Enter document name"
             />
           </div>
         )}
-        <div className="documentNumberContainer">
-          <label htmlFor="documentNumber" style={{ marginRight: "18px", fontSize: "16px", paddingLeft: "88px" }}>
+        <div className="file-kyc mt-4 ">
+          <label htmlFor="" className="lab-kyc-doc">
             Document Number:
           </label>
           <input
             type="text"
             id="documentNumber"
+            className="inputDoc"
+
             value={documentNumber}
             onChange={handleDocumentNumber}
             placeholder="Enter document number"
@@ -171,15 +192,16 @@ const KYCVerification = () => {
             />
           </div>
         </div>
+        <div className="buttonContainer">
+          <button
+            className="actionBtnContainer actionBtnContainerFilled"
+            onClick={handleSubmit}
+          >
+            Submit
+          </button>
+        </div>
       </div>
-      <div className="buttonContainer">
-        <button
-          className="actionBtnContainer actionBtnContainerFilled"
-          onClick={handleSubmit}
-        >
-          Submit
-        </button>
-      </div>
+
     </div>
   );
 };
