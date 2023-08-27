@@ -12,8 +12,10 @@ import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { getEmployeeProfile, signout } from "../apicalls";
 import { toast } from "react-toastify";
-import { PaystackButton } from 'react-paystack';
+import { PaystackButton } from 'react-paystack'
+;
 import PaystackPop from "@paystack/inline-js"
+
 import paystackKey from './ConfigurePaystack'; // Make sure to adjust the path as needed
 
 
@@ -58,17 +60,6 @@ const Plans = () => {
     }
   };
 
-  //adding here PAY
-
-  const paywithpaystack= ()=>{
-
-    const paystack= new PaystackPop()
-    paystack.newTransation({
-      key:"pk_test_667c8ba43b45606643137018b23e26548e0040a9",
-    })
-  }
-
-
   
   
 
@@ -97,6 +88,8 @@ const Plans = () => {
       const email = profile?.email;
       const metadata = { planId: id };
       console.log("ok")
+    
+      
 
     return (
       <PaystackButton
@@ -230,7 +223,7 @@ const Plans = () => {
                 >
                   Select
                 </button> */}
-                    {HandleClick(3)}
+                {HandleClick(3)}
               </div>
             </div>
 
