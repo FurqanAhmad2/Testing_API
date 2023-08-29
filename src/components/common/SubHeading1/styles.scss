@@ -1,0 +1,14 @@
+@use "../../../styles/globalStyle" as style;
+
+.subHeading1 {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.subHeading1_light {
+  color: #fff;
+}
+
+.subHeading1_dark {
+  color: rgba(0, 0, 0, 0.8);
+}

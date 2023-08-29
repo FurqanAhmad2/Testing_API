@@ -1,0 +1,16 @@
+@use "../../../styles/globalStyle" as style;
+
+.breadcrumbsContainer {
+  width: 100%;
+  margin: 15px 0 30px 0;
+  padding: 15px 0;
+  border-bottom: 1px solid #dbe1e7;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+
+  p {
+    font-size: 14px;
+  }
+}

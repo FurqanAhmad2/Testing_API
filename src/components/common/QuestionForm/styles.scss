@@ -1,0 +1,21 @@
+@use "../../../styles/globalStyle" as style;
+.questionContent {
+  padding: 0px;
+  background-color: style.$background1;
+  width: 100%;
+  border-radius: 10px;
+  width: 100%;
+
+  .form {
+    display: grid;
+    gap: 10px;
+
+    .button {
+      justify-self: center;
+    }
+  }
+  .formRow {
+    display: flex;
+    flex-direction: column;
+  }
+}

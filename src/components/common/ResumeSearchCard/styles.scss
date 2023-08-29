@@ -1,0 +1,35 @@
+@use "../../../styles/globalStyle" as style;
+
+.resumeSearchCard {
+  border-radius: 10px;
+  background-color: #fff;
+  padding: 15px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+
+    .location {
+      text-transform: capitalize;
+    }
+
+    h4 {
+      font-size: 18px;
+    }
+  }
+
+  h5 {
+    padding: 10px 0;
+  }
+  .actionBtnContainer {
+    padding: 5px 15px;
+    font-size: 14px;
+  }
+}

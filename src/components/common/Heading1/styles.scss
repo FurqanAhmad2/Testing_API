@@ -1,0 +1,14 @@
+@use "../../../styles/globalStyle" as style;
+
+.heading1 {
+  font-size: 28px;
+  font-weight: 500;
+}
+
+.heading1_light {
+  color: #fff;
+}
+
+.heading1_dark {
+  color: rgba(0, 0, 0, 0.8);
+}

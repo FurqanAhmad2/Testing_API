@@ -1,0 +1,72 @@
+@use "../../../styles/globalStyle" as style;
+
+.jobCardBtnContainer {
+  width: 100%;
+  max-width: 500px;
+  margin-top: 40px;
+  position: relative;
+
+  .jobCardBtn {
+    padding-top: 80px;
+    background-color: #fff;
+    border-radius: 15px;
+    padding-bottom: 20px;
+    height: 100%;
+
+    .jobNumberContainer {
+      display: grid;
+      justify-items: center;
+
+      .jobNumberContent {
+        background-color: style.$color2;
+        width: fit-content;
+        border-radius: 20px;
+        padding: 2px 30px;
+
+        p {
+          color: #fff;
+        }
+      }
+    }
+
+    .textContainer {
+      text-align: center;
+      padding: 15px 10px;
+      .jobTitle {
+        color: #000000;
+        font-size: 20px;
+        font-weight: 500;
+      }
+
+      .companyTitle {
+        color: rgba(0, 0, 0, 0.8);
+        font-size: 18px;
+      }
+    }
+
+    .btnContainer {
+      display: grid;
+      place-items: center;
+    }
+  }
+
+  .jobImageContainer {
+    position: absolute;
+    top: -50px;
+    left: 0;
+    width: 100%;
+    display: grid;
+    place-items: center;
+
+    .imgContainer {
+      background-color: style.$color1;
+      height: 100px;
+      width: 100px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      font-size: 37px;
+      color: #fff;
+    }
+  }
+}

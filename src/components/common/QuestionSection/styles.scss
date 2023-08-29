@@ -1,0 +1,68 @@
+@use "../../../styles/globalStyle" as style;
+
+.questionPageContainer {
+  display: grid;
+  justify-items: center;
+  padding: 100px 20px 50px 20px;
+  min-height: 60vh;
+
+  .questionPageContent {
+    max-width: 1000px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  @media (max-width: 650px) {
+    .questionPageContent {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .questionInputContainer {
+    padding: 20px;
+    background-color: style.$background1;
+    border-radius: 10px;
+    width: 100%;
+    height: fit-content;
+
+    .formCards {
+      display: grid;
+      gap: 20px;
+
+      .header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+      }
+      .deleteBtn {
+        background-color: red;
+        padding: 5px 15px;
+        border-radius: 10px;
+        color: #fff;
+      }
+    }
+    .btnTypeContainer {
+      background-color: #fff;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      place-items: center;
+      gap: 15px;
+      margin-top: 15px;
+
+      .typeBtn {
+        padding: 10px;
+        border: 1px solid black;
+        width: 100%;
+        border-radius: 20px;
+      }
+
+      .selected {
+        background-color: style.$color1;
+        border: 1px solid style.$color1;
+
+        color: #fff;
+      }
+    }
+  }
+}
