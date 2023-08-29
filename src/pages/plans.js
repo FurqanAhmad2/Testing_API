@@ -65,29 +65,29 @@ const Plans = () => {
   };
 
 
-  const initializePayment = async () => {
-    const params = {
-      email: profile?.email,
-      amount: '20000',
-    };
+  // const initializePayment = async () => {
+  //   const params = {
+  //     email: profile?.email,
+  //     amount: '20000',
+  //   };
 
-    const requestOptions = {
-      method: 'POST',
-      headers: {
-        Authorization: process.env.REACT_APP_PAYSTACK_KEY,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(params),
-    };
+  //   const requestOptions = {
+  //     method: 'POST',
+  //     headers: {
+  //       Authorization: process.env.REACT_APP_PAYSTACK_KEY,
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify(params),
+  //   };
 
-    try {
-      const response = await fetch('https://api.paystack.co/transaction/initialize', requestOptions);
-      const data = await response.json();
-      setResponse(data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  //   try {
+  //     const response = await fetch('https://api.paystack.co/transaction/initialize', requestOptions);
+  //     const data = await response.json();
+  //     setResponse(data);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
 
   
   
@@ -118,7 +118,7 @@ const Plans = () => {
       const metadata = { planId: id };
       console.log("ok")
     
-      initializePayment();
+      // initializePayment();
 
 
 
