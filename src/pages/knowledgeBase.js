@@ -21,6 +21,14 @@ const KnowledgeBase = () => {
                 <p>FAQs</p>
               </div>
             </Link>
+
+            <Link to="/faq">
+              <div className="btn shadow">
+                <FontAwesomeIcon icon={faComment} />
+                <p>Anohter One</p>
+              </div>
+            </Link>
+
           </div>
         </div>
       </div>

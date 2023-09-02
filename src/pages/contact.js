@@ -15,6 +15,7 @@ import Heading1 from "../components/common/Heading1/heading1";
 import ContactImg1 from "../img/contactImg1.png";
 import Breadcrumbs from "../components/common/Breadcrumbs/breadcrumbs";
 import SubHeading1 from "../components/common/SubHeading1/subHeading1";
+import Footer from "../components/layout/footer/footer";
 
 const Contact = () => {
   return (
@@ -179,6 +180,8 @@ const Contact = () => {
           </div>
         </div>
       </div>
+
+      <Footer/>
     </>
   );
 };

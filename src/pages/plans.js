@@ -15,6 +15,7 @@ import { toast } from "react-toastify";
 import { PaystackButton } from 'react-paystack';
 import { PaystackConsumer } from 'react-paystack';
 import PaystackPop from "@paystack/inline-js";
+import Footer from "../components/layout/footer/footer";
 
 // import paystackKey from './ConfigurePaystack'; // Make sure to adjust the path as needed
 
@@ -416,7 +417,10 @@ const Plans = () => {
             </div>
           </div>
         </div>
+
+   
       </div>
+      <Footer/>
     </>
   );
 };

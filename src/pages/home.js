@@ -17,6 +17,7 @@ import HomeImg1 from "../img/homeImg1.png";
 import HomeImg2 from "../img/homeImg2.png";
 import HomeImg3 from "../img/homeImg3.png";
 import HomeImg4 from "../img/homeImg4.png";
+import Footer from "../components/layout/footer/footer";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -272,6 +273,8 @@ const Home = () => {
           </div>
         </div>
       </div>
+
+      <Footer/>
     </div>
   );
 };

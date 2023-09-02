@@ -151,6 +151,21 @@ const Navbar = () => {
                   );
                 }
 
+                if (e.path === "/ldpca") {
+                  return (
+                    <NavbarBtnHover
+                      colorchange={location.pathname === "/" && !colorchange}
+                      name={"LDPCA"}
+                      options={[
+                        {
+                          name: "Diasporan  Professionals To  Corporate Africa",
+                          link: "/ldpca",
+                        },
+                      ]}
+                    />
+                  );
+                }
+
                 return (
                   <Link to={e.path}>
                     <button

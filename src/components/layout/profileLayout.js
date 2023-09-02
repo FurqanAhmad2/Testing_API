@@ -37,7 +37,7 @@ const ProfileLayout = (props) => {
   const employeeTabs = [
     { name: "Education", path: "/profile/education" },
     { name: "Experience", path: "/profile/experience" },
-    { name: "Skill", path: "/profile/skill" },
+    { name: "Skills", path: "/profile/skill" },
     { name: "Resume", path: "/profile/resume" },
   ];
 
@@ -166,7 +166,7 @@ const ProfileLayout = (props) => {
   className="mx-56 py-2 px-6 bg-blue-500 hover:bg-blue-600 text-white rounded-md shadow-md transition duration-300 ease-in-out focus:outline-none"
   onClick={handleKYCVerification}
 >
-  <span>Upload KYB</span>
+  <span>Get Verified</span>
 </button>
 
           )}

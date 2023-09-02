@@ -21,7 +21,8 @@ const EmployerRegisterInitial = {
   password2: "",
   employer_type: "",
   agency_name: "",
-  role: "",
+  role: "null",
+  admin: "null",
 };
 
 const AddEmployer = () => {
@@ -72,7 +73,7 @@ const AddEmployer = () => {
 
     setLoading(true);
     const res = await addEmployer(
-      { ...employerRegisterFields, admin: profile.id },
+      { ...employerRegisterFields, admin: profile.id ,role: employerRegisterFields.role},
       toast,
       setLoading,
       navigate
