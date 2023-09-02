@@ -6,7 +6,7 @@ import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../context/AuthContext";
 import ScreenError from "../../components/common/ScreenError/screenError";
-import { getApikey, postApikey, setSubscriptionDetails } from "../../apicalls";
+import { getApikey, postApikey, setSubscriptionDetails,getEmployeeProfile } from "../../apicalls";
 import ScreenMessage from "../../components/common/ScreenMessage/screenMessage";
 import SubHeading1 from "../../components/common/SubHeading1/subHeading1";
 import ActionButton from "../../components/common/ActionButton/actionButton";
@@ -26,6 +26,20 @@ const ApiKey = () => {
     }
     setApikey(res.apikey);
   };
+
+
+  const {
+    isError,
+    isLoading: profileLoading,
+    data: profile,
+  } = useQuery({
+    queryKey: ["Profile", token],
+    queryFn: getEmployeeProfile,
+  });
+
+  useEffect(() => {
+    console.log(profile);
+  });
 
   useEffect(() => {
     const func = async () => {
@@ -61,13 +75,16 @@ const ApiKey = () => {
             <div className="urlContainer shadow">{apikey}</div>
           </div>
 
-          <ActionButton
-            text="Generate New Apikey"
-            handleClick={() => {
-              RefreshApikey();
-            }}
-            style={{ maxWidth: "fit-content" }}
-          />
+    
+          {profile?.isVerified && (
+            <ActionButton
+              text="Generate New Apikey"
+              handleClick={() => {
+                RefreshApikey();
+              }}
+              style={{ maxWidth: "fit-content" }}
+            />
+          )}
         </div>
       </div>
     </>

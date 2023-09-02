@@ -35,6 +35,7 @@ const Plans = () => {
   });
 
   const PayStackkey = process.env.REACT_APP_PAYSTACK_KEY_PUBLIC;
+  const PayStackSecret = process.env.REACT_APP_PAYSTACK_KEY_SECRET;
 
   const {
     isError,
@@ -45,7 +46,7 @@ const Plans = () => {
     queryFn: getEmployeeProfile,
   });
 
-  const paywithpaystack = (amount) => {
+  const paywithpaystack = (amount,id) => {
 
     const email = profile?.email;
     const paystack = new PaystackPop()
@@ -54,15 +55,15 @@ const Plans = () => {
     paystack.newTransaction({
       key: PayStackkey,
       amount: amount,
-      email: 'furqana405@gmail.com',
+      email: "furqana405@gmail.com",
 
       onSuccess(transaction) {
-        let message = `Payment Complete! Refrence ${transaction.reference} Please Wait for a few moments here`
+        let message = `Payment Complete! Refrence ${transaction.reference} Please Wait for a few moments here don't Refresh or Redirect to anyother Page`
         alert(message)
 
         setTimeout(() => {
-          verifyTransaction(transaction.reference);
-        }, 20000);
+          verifyTransaction(transaction.reference,id);
+        }, 10000);
 
 
       },
@@ -74,16 +75,35 @@ const Plans = () => {
   }
 
 
-  const  verifyTransaction= async (reference)=> {
+  const  verifyTransaction= async (reference,id)=> {
     const url = `https://api.paystack.co/transaction/verify/${reference}`;
     const headers = {
-      Authorization: `Bearer sk_test_64438f62e730e1dca4d92cf02c968a3417ba897c`
+      // Authorization: `Bearer ${PayStackSecret}`
+         Authorization: `Bearer sk_test_64438f62e730e1dca4d92cf02c968a3417ba897c`
     };
 
     try {
       const response = await fetch(url, { headers });
       const data = await response.json();
-      console.log(data);
+      console.log(data.data.receipt_number);
+      console.log(data.data.reference);
+      console.log(data.data.status);
+
+      let StatusPayment=""
+      if(data.data.status=="success"){
+        StatusPayment="SUCCESS"
+      }else{
+        StatusPayment="FAILURE"
+
+      }
+
+      
+      // Call the function with the necessary arguments
+      const res = postSubscription(token,id, data.data.reference, data.data.receipt_number,StatusPayment,toast, navigate);
+      console.log('Billing response:', res);
+      toast.success("Payment submitted successfully.");
+      navigate("/profile");
+
       // Handle the parsed data here (e.g., update component state)
     } catch (error) {
       console.error(error);
@@ -117,7 +137,8 @@ const Plans = () => {
       const email = profile?.email;
       const metadata = { planId: id };
       const publicKey = process.env.REACT_APP_PAYSTACK_KEY
-      console.log(publicKey)
+      console.log(id)
+
       console.log("----------------------------------")
 
       let amount = 0;
@@ -165,7 +186,7 @@ const Plans = () => {
 
       
       console.log(amount," to be paid")
-      paywithpaystack(amount);
+      paywithpaystack(amount,id);
 
 
 

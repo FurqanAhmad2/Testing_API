@@ -252,6 +252,9 @@ export const linkedinRegister1 = async (data, toast) => {
   }
 };
 
+
+
+
 export const linkedinRegister2 = async (data, dispatch, toast, navigate) => {
   dispatch({ type: "LOGIN_USER_START" });
   console.log(data);
@@ -1987,24 +1990,9 @@ export const deleteEmployer = async (token, req, toast) => {
   }
 };
 
-//Post Subscription
-export const postSubscription = async (req, token, toast, navigate) => {
-  try {
-    const res = await axios.post(`${BaseUrl}/subscription/add/`, req, {
-      headers: {
-        Authorization: `Token ${token}`,
-        apikey,
-      },
-    });
-    toast("Subscription Selected");
-    navigate("/profile/currentplan");
-  } catch (err) {
-    console.log(err);
-    toast(
-      err.response?.data?.message || "Something went wrong. Please try again."
-    );
-  }
-};
+
+
+
 
 //Get API Key
 export const getApikey = async (token) => {
@@ -2080,3 +2068,138 @@ export const submitKYCData = async (token,documentNumber, selectedFile, selected
 };
 
 
+// //submit Billing
+// export const submitBillForm = async (token,reference,receipt_number,StatusPayment) => {
+ 
+// };
+
+
+export const submitBillForm = async (token, reference, receipt_number, StatusPayment) => {
+  try {
+    // Define your API endpoint
+    const API_ENDPOINT = `${BaseUrl}billing/transaction/`; // Replace with your API endpoint
+
+    // Define the data to be sent in the request body as a JSON object
+    const requestData = {
+      token,
+      reference,
+      receipt_number,
+      StatusPayment,
+    };
+
+    // Make the POST request with Axios, sending data as a JSON object
+    const response = await axios.post(API_ENDPOINT, requestData, {
+      headers: {
+        'Content-Type': 'application/json', // Set the content type for JSON data
+        Authorization: `Token ${token}`,
+        apikey: apikey,
+      },
+    });
+
+    // Handle the response data, such as logging it
+    console.log('Bill form submission response:', response.data);
+
+    // Return or handle the response data as needed
+    return response.data;
+  } catch (error) {
+    // Handle errors here, such as logging or throwing an exception
+    console.error('Bill form submission failed:', error);
+    throw error;
+  }
+};
+
+
+
+//submit KYC
+export const submitBillForm_01 = async (token,documentNumber, selectedFile, selectedID, otherDocument) => {
+  try {
+    const formData = new FormData();
+    formData.append("kycNumber", documentNumber);
+    formData.append("file", selectedFile);
+
+    if (selectedID === "Others...") {
+      formData.append("kycType", otherDocument);
+    } else {
+      formData.append("kycType", selectedID);
+    }
+
+    // const response = await axios.post("/user/kyc", formData);
+
+    const response = await axios.post(
+      `${BaseUrl}/user/kyc/`,
+      formData,
+      {
+        headers: {
+          Authorization: `Token ${token}`,
+          apikey: apikey,
+        },
+      }
+    );
+    console.log(response.data);
+
+  } catch (error) {
+    console.error("Error:", error);
+
+  }
+};
+
+
+
+// //Post Subscription
+// export const postSubscription = async (req, token, toast, navigate) => {
+//   try {
+//     const res = await axios.post(`${BaseUrl}/subscription/add/`, req, {
+//       headers: {
+//         Authorization: `Token ${token}`,
+//         apikey,
+//       },
+//     });
+//     toast("Subscription Selected");
+//     navigate("/profile/currentplan");
+//   } catch (err) {
+//     console.log(err);
+//     toast(
+//       err.response?.data?.message || "Something went wrong. Please try again."
+//     );
+//   }
+// };
+
+// Define the function to post a subscription
+export const postSubscription = async (token, subscription_id, reference_id, receipt_id, Transaction_Status, toast, navigate) => {
+  try {
+    // Define the request data object to be sent in the POST request
+    const requestData = {
+      subscription_id, // Include the 'id' field if needed
+      reference_id,
+      receipt_id,
+      Transaction_Status,
+    };
+
+    // Make a POST request to the subscription endpoint
+    const response = await axios.post(`${BaseUrl}/subscription/add/`, requestData, {
+      headers: {
+        Authorization: `Token ${token}`,
+        apikey,
+        'Content-Type': 'application/json', // Set the content type for JSON data
+      },
+    });
+
+    // Handle a successful response
+    console.log("(((((((((((((((((((")
+    console.log(response)
+    console.log(")))))))))))))))))))")
+
+    toast('Subscription Selected');
+    navigate('/profile');
+    
+    // Return the response data if needed
+    return response.data;
+  } catch (err) {
+    // Handle errors, such as logging or displaying an error message
+    console.error('Error posting subscription:', err);
+    toast(
+      err.response?.data?.message || 'Something went wrong. Please try again.'
+    );
+    throw err;
+  }
+};

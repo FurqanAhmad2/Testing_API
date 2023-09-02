@@ -16,7 +16,7 @@ import Img from "../../img/company.png";
 import Imgv from "../../img/verify.png";
 
 const ProfileLayout = (props) => {
- const navigate = useNavigate();
+  const navigate = useNavigate();
   const location = useLocation();
   const { dispatch, token, type } = useContext(AuthContext);
   const [tabbtn, setTabBtn] = useState(0);
@@ -49,8 +49,8 @@ const ProfileLayout = (props) => {
     { name: "Current Plan ", path: "/profile/currentplan" },
   ];
 
-  
-  
+
+
 
   const handleKYCVerification = () => {
     navigate("/kyc-verification");
@@ -73,24 +73,30 @@ const ProfileLayout = (props) => {
           <div className="textContainer">
             <div className="mainTextContent ">
               <div className="flex flex-row py-2">
-              <h2 className="font-bold text-4xl">{`${profile?.first_name} ${profile?.last_name}`}
-              </h2>
-              {profile?.hasKyc === true  ? (
-  <img
-    src={Imgv}
-    className=""
-    style={{
-      width: 40,
-      height: 40
-    }}
-    alt="Verified"
-  />
-) : (
-  <p className="text-red-500 px-4">Not Verified</p>
-)}
+              {profile?.isVerified === true ? (
+                  <img
+                    src={Imgv}
+                    className=""
+                    style={{
+                      width: 40,
+                      height: 40,
+                    }}
+                    alt="Verified"
+                  />
+                ) : (
+                  <p className="text-red-500 px-4">Not Verified</p>
+                )}
+                
+                <div
+                style={{marginTop: '4px'}}>
+                <h2 className="font-bold text-4xl mt-2">{`${profile?.first_name} ${profile?.last_name}`}
+                </h2>
+                </div>
+                
+               
 
 
-              
+
               </div>
               <h4>
                 {type === "EMPLOYEE"
@@ -99,7 +105,7 @@ const ProfileLayout = (props) => {
                     ? "Admin"
                     : "Moderator"}
               </h4>
-              
+
               <div className="details">
                 <FontAwesomeIcon icon={faMessage} />
                 <p>{profile?.email}</p>
@@ -141,35 +147,39 @@ const ProfileLayout = (props) => {
             </div>
 
 
-            {type == "EMPLOYEE" ? (  // Conditionally render based on user type
-            <div className="profileCompletion">
-              <span>Profile Completed:</span>
-              <div className="profileCompletionLine">
-                <div
-                  className="profileCompletionFill"
-                  style={{ width: `${profile?.progess}%` }}
-                ></div>
-              </div>
-              <div className="profileCompletionDescription">
-                {`${profile?.progess}% profile completed`}
-              </div>
-              
-              <button
-                className="kycButton actionBtnContainerFilled"
-                onClick={handleExpe}
-              >
-                <span>Upload {profile?.remaining[0]}</span>
-              </button>
-            </div>
-          ) : (
-            <button
-  className="mx-56 py-2 px-6 bg-blue-500 hover:bg-blue-600 text-white rounded-md shadow-md transition duration-300 ease-in-out focus:outline-none"
-  onClick={handleKYCVerification}
->
-  <span>Get Verified</span>
-</button>
+            {type === "EMPLOYEE" &&  (  // Conditionally render based on user type
+              <div className="profileCompletion">
+                <span>Profile Completed:</span>
+                <div className="profileCompletionLine">
+                  <div
+                    className="profileCompletionFill"
+                    style={{ width: `${profile?.progess}%` }}
+                  ></div>
+                </div>
+                <div className="profileCompletionDescription">
+                  {`${profile?.progess}% profile completed`}
+                </div>
 
-          )}
+                <button
+                  className="kycButton actionBtnContainerFilled"
+                  onClick={handleExpe}
+                >
+                  <span>Upload {profile?.remaining[0]}</span>
+                </button>
+              </div>
+            )} 
+
+            {profile?.isVerified==='false' && (
+              <button
+              className="mx-56 py-2 px-6 bg-blue-500 hover:bg-blue-600 text-white rounded-md shadow-md transition duration-300 ease-in-out focus:outline-none"
+              onClick={handleKYCVerification}
+            >
+              <span>Get Verified</span>
+            </button>
+            )}
+
+
+
           </div>
         </div>
 
