@@ -21,8 +21,7 @@ const EmployerRegisterInitial = {
   password2: "",
   employer_type: "",
   agency_name: "",
-  role: "null",
-  admin: "null",
+  role: null
 };
 
 const AddEmployer = () => {

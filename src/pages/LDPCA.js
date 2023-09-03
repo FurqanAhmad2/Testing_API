@@ -1,5 +1,9 @@
 import React from 'react'
-import Footer from "../components/layout/footer/footer"
+import Footer from "../components/layout/footer/footer";
+import img1 from "./../img/ldpca-hd-1 (1).png"
+import img2 from "./../img/ldpca-hd-2.png"
+import img3 from "./../img/ldpca-hd-3.png"
+
 
 function LDPCA() {
   return (
@@ -20,10 +24,11 @@ function LDPCA() {
         </div>
     </nav>
 
-    <header class="bg-indigo-800 text-white py-20">
+    <header class="text-white py-20"
+    style={{backgroundColor: '#084cac'}}>
         <div class="container mx-auto text-center">
             <h1 class="text-5xl font-bold mb-4 tracking-wide"
-            style={{color: 'white'}}>Welcome to the Diasporan Connection Initiative</h1>
+            style={{color: 'white'}}>Welcome to the Diasporan Initiative</h1>
             <p class="text-lg">Strengthening bonds between African diasporans and their home continent.</p>
         </div>
     </header>
@@ -31,7 +36,7 @@ function LDPCA() {
     <section id="about" class="py-16">
         <div class="container mx-auto">
             <div class="flex flex-col lg:flex-row items-center justify-center lg:space-x-16">
-                <img src="images/about.jpg" alt="About Us" class="w-full lg:w-1/2 mb-8 lg:mb-0 rounded-lg shadow-lg" />
+                <img src={img1} alt="About Us" class="w-full lg:w-1/2 mb-8 lg:mb-0 rounded-lg shadow-lg" />
                 <div class="lg:w-1/2">
                     <h2 class="text-3xl font-semibold mb-4">About Us</h2>
                     <p class="text-gray-700 leading-relaxed">
@@ -60,15 +65,18 @@ function LDPCA() {
                         The Diasporan Connection Initiative operates on a simple yet powerful principle. We encourage professionals from the diaspora to engage with African corporate organizations during their visits to the continent. Through short-term volunteer opportunities, workshops, and collaborations, diasporans gain local work experience, create meaningful connections, and showcase their skills to potential employers.
                     </p>
                 </div>
-                <img src="images/how-it-works.jpg" alt="How It Works" class="w-full lg:w-1/2 mb-8 lg:mb-0 rounded-lg shadow-lg" />
+                <img src={img2} alt="How It Works" class="w-full lg:w-1/2 mb-8 lg:mb-0 rounded-lg shadow-lg" />
             </div>
         </div>
     </section>
 
     <section id="benefits" class="bg-gray-100 py-16">
         <div class="container mx-auto text-center">
-            <h2 class="text-3xl font-semibold mb-4">Benefits</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <h2 class="text-3xl font-semibold mb-4"
+            >Benefits</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+            style={{marginTop :'2%'}}
+            >
                 <div class="p-6 bg-white rounded-lg shadow-md">
                     <h3 class="text-xl font-semibold mb-2">Mutual Learning</h3>
                     <p class="text-gray-700 leading-relaxed">
@@ -100,7 +108,7 @@ function LDPCA() {
     <section id="membership" class="py-16">
         <div class="container mx-auto">
             <div class="flex flex-col lg:flex-row items-center justify-center lg:space-x-16">
-                <img src="images/membership.jpg" alt="Membership and Partnerships" class="w-full lg:w-1/2 mb-8 lg:mb-0 rounded-lg shadow-lg" />
+                <img src={img3} alt="Membership and Partnerships" style={{width: "40%"}} class="rounded-lg shadow-lg" />
                 <div class="lg:w-1/2">
                     <h2 class="text-3xl font-semibold mb-4">Membership and Partnerships</h2>
                     <p class="text-gray-700 leading-relaxed">

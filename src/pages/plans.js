@@ -102,7 +102,7 @@ const Plans = () => {
       const res = postSubscription(token,id, data.data.reference, data.data.receipt_number,StatusPayment,toast, navigate);
       console.log('Billing response:', res);
       toast.success("Payment submitted successfully.");
-      navigate("/profile");
+      navigate("/kyc-verification");
 
       // Handle the parsed data here (e.g., update component state)
     } catch (error) {

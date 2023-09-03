@@ -160,16 +160,11 @@ const ProfileLayout = (props) => {
                   {`${profile?.progess}% profile completed`}
                 </div>
 
-                <button
-                  className="kycButton actionBtnContainerFilled"
-                  onClick={handleExpe}
-                >
-                  <span>Upload {profile?.remaining[0]}</span>
-                </button>
+                <h2 className="font-bold text-3xl ">Profile Incomplete</h2>
               </div>
             )} 
 
-            {profile?.isVerified==='false' && (
+            {profile?.isVerified===false && (
               <button
               className="mx-56 py-2 px-6 bg-blue-500 hover:bg-blue-600 text-white rounded-md shadow-md transition duration-300 ease-in-out focus:outline-none"
               onClick={handleKYCVerification}

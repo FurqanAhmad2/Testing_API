@@ -13,7 +13,7 @@ import ActionButton from "../../components/common/ActionButton/actionButton";
 
 const ApiKey = () => {
   const { token } = useContext(AuthContext);
-  const [apikey, setApikey] = useState("***Loading***");
+  const [apikey, setApikey] = useState("");
 
   const RefreshApikey = async () => {
     setApikey("***Loading***");
@@ -39,24 +39,10 @@ const ApiKey = () => {
 
   useEffect(() => {
     console.log(profile);
+    console.log(profile?.isVerified);
   });
 
-  useEffect(() => {
-    const func = async () => {
-      const res = await getApikey(token);
-      console.log(res);
-      if (res === "FAILED") {
-        toast("Something Went Wrong!");
-        setApikey("------------");
-        return;
-      }
 
-      if (!res.apikey) {
-        RefreshApikey();
-      } else setApikey(res.apikey);
-    };
-    if (token) func();
-  }, []);
 
   return (
     <>
@@ -66,6 +52,7 @@ const ApiKey = () => {
         </div>
       </div>
 
+      {profile?.isVerified && (
       <div className="profileMainContainer shadow">
         <div className="apiKeyContainer">
           <SubHeading1 text={"Get APIKEY"} />
@@ -76,7 +63,7 @@ const ApiKey = () => {
           </div>
 
     
-          {profile?.isVerified && (
+         
             <ActionButton
               text="Generate New Apikey"
               handleClick={() => {
@@ -84,9 +71,17 @@ const ApiKey = () => {
               }}
               style={{ maxWidth: "fit-content" }}
             />
-          )}
+  
         </div>
       </div>
+
+      )} 
+      {!profile?.isVerified && (
+
+        <SubHeading1 text={"Please Get Verfiy for getting the APIKEY"} />
+
+      )}
+
     </>
   );
 };

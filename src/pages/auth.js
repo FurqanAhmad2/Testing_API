@@ -39,8 +39,6 @@ const CandidateRegisterInitial = {
   city: "",
   password: "",
   password2: "",
-  admin: "",
-  role:""
 };
 
 const CandidateSigninInitial = { username: "", password: "" };
@@ -58,8 +56,7 @@ const EmployerRegisterInitial = {
   password2: "",
   employer_type: "",
   agency_name: "",
-  admin: "",
-  role: "",
+  role: null,
 };
 
 const EmployerSigninInitial = { username: "", password: "" };
