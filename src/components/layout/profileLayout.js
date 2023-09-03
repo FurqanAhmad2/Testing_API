@@ -56,6 +56,13 @@ const ProfileLayout = (props) => {
     navigate("/kyc-verification");
   };
 
+  
+  const handleGetVerified = () => {
+    navigate("/Get-Verified");
+  };
+
+
+
   const handleExpe = () => {
     navigate("/profile/experience");
   };
@@ -159,15 +166,15 @@ const ProfileLayout = (props) => {
                 <div className="profileCompletionDescription">
                   {`${profile?.progess}% profile completed`}
                 </div>
-
-                <h2 className="font-bold text-3xl ">Profile Incomplete</h2>
+                {profile?.progess < 100 && (
+                <h2 className="font-bold text-3xl ">Profile Incomplete</h2>)}
               </div>
             )} 
 
-            {profile?.isVerified===false && (
+            {profile?.isVerified===false && type === "EMPLOYEE" && (
               <button
-              className="mx-56 py-2 px-6 bg-blue-500 hover:bg-blue-600 text-white rounded-md shadow-md transition duration-300 ease-in-out focus:outline-none"
-              onClick={handleKYCVerification}
+              className="mx-3 py-2 px-6 bg-blue-500 hover:bg-blue-600 text-white rounded-md shadow-md transition duration-300 ease-in-out focus:outline-none"
+              onClick={handleGetVerified}
             >
               <span>Get Verified</span>
             </button>

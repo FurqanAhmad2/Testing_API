@@ -81,6 +81,8 @@ import Resume from "./pages/CandidatePages/resume";
 import OverviewEmployer from "./pages/EmployerPages/overviewEmployer";
 import CandidateView from "./pages/EmployerPages/CandidateView";
 import KYCVerification from "./pages/KYCVerification";
+import CandidateProdecure from "./pages/Candidate_Prodecure";
+import PlansCandidate from "./pages/plansCandidate";
 import LDPCA from "./pages/LDPCA.js";
 
 const App = () => {
@@ -130,6 +132,13 @@ const App = () => {
                         path="/filesupload/:jobId"
                         element={<FilesUpload />}
                       />
+
+                      
+                    <Route
+                        path="/Get-Verified"
+                        element={<CandidateProdecure />}
+                      />  
+
                       <Route path="/dei/:jobId" element={<EmployeeDei />} />
                       <Route
                         path="/deiquiz/:jobId"
@@ -140,6 +149,11 @@ const App = () => {
                       <Route
                         path="/kyc-verification"
                         element={<KYCVerification />}
+                      />
+
+                      <Route
+                        path="/Candidate-Plan"
+                        element={<PlansCandidate />}
                       />
 
                       {/* Dashboard Subroutes */}
@@ -219,6 +233,7 @@ const App = () => {
                         path="/kyc-verification"
                         element={<KYCVerification />}
                       />
+
 
                       {/* Dashboard Subroutes */}
                       <Route path="/dashboard" element={<Outlet />}>

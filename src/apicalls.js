@@ -1,5 +1,5 @@
 import axios from "axios";
-export const BaseUrl = "https://a5f5-202-8-114-246.ngrok-free.app/";
+export const BaseUrl = "https://collarhire-dev.blacksea-2f0849b1.westus.azurecontainerapps.io/";
 export const apikey = process.env.REACT_APP_APIKEY;
 
 //Auth
