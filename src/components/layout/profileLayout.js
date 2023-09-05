@@ -167,19 +167,25 @@ const ProfileLayout = (props) => {
                   {`${profile?.progess}% profile completed`}
                 </div>
                 {profile?.progess < 100 && (
-                  <h2 className="font-bold text-1xl ">Profile Incomplete</h2>)}
+                  <h2 className="  "
+                  style={{fontSize: '12px'}}>Profile Incomplete</h2>)}
               </div>
             )}
 
             {profile?.isVerified === false && type === "EMPLOYEE" && (
               <button
-                style={{ padding: '6px 12px', fontSize: '14px' }}
-                className="mx-3 bg-blue-500 hover:bg-blue-600 text-white rounded-md shadow-md transition duration-300 ease-in-out focus:outline-none"
+                style={{
+                  padding: '6px 8px',
+                  fontSize: '14px',
+                  backgroundColor: '#004aad', // Set the background color to #004aad
+                }}
+                className="mx-3 text-white rounded-md shadow-md transition duration-300 ease-in-out focus:outline-none"
                 onClick={handleGetVerified}
               >
                 <span>Get Verified</span>
               </button>
             )}
+
 
 
 

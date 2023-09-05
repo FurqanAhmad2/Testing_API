@@ -2,7 +2,7 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useQuery } from "@tanstack/react-query";
 import { useContext, useEffect, useState } from "react";
-import { editEmployeeProfile, getEmployeeProfile } from "../apicalls";
+import { editEmployeeProfile, getEmployeeProfile, editEmployerProfile} from "../apicalls";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import CountryStateCity from "../countries+states+cities.json";
@@ -45,6 +45,8 @@ const EditProfile = () => {
   });
 
   useEffect(() => {
+
+    console.log(type)
     if (profile && type === "EMPLOYEE") {
       let temp = {
         first_name: profile.first_name,
@@ -127,15 +129,30 @@ const EditProfile = () => {
   const HandleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
-    editEmployeeProfile(
-      token,
-      employeeProfile,
-      setLoading,
-      dispatch,
-      toast,
-      navigate
-    );
+  
+    if (type === "EMPLOYEE") {
+      // Submit employeeProfile data
+      editEmployeeProfile(
+        token,
+        employeeProfile,
+        setLoading,
+        dispatch,
+        toast,
+        navigate
+      );
+    } else if (type === "EMPLOYER") {
+      // Submit employerProfile data
+      editEmployeeProfile(
+        token,
+        employerProfile, // Use employerProfile instead of employeeProfile
+        setLoading,
+        dispatch,
+        toast,
+        navigate
+      );
+    }
   };
+  
 
   if (profileLoading) return <h1>Loading...</h1>;
 
@@ -557,7 +574,9 @@ const EditProfile = () => {
             </>
           )}
 
-          <button className="loginButton" type="submit" >
+          <button className="mx-3 bg-blue-500 hover:bg-blue-600 text-white rounded-md shadow-md transition duration-300 ease-in-out focus:outline-none" 
+          style={{height: '170%'}}
+          type="submit" >
             {loading ? "Loading..." : "Save"}
           </button>
         </form>

@@ -451,6 +451,36 @@ export const editEmployeeProfile = async (
   }
 };
 
+
+export const editEmployerProfile = async (
+  token,
+  data,
+  setLoading,
+  dispatch,
+  toast,
+  navigate
+) => {
+  try {
+    const res = await axios.patch(`${BaseUrl}/employee/data/`, data, {
+      headers: {
+        Authorization: `Token ${token}`,
+        apikey,
+      },
+    });
+    await setEmployeeProfile(token, dispatch);
+    setLoading(false);
+    toast("Profile Updated");
+    navigate("/profile");
+  } catch (err) {
+    setLoading(false);
+    toast("Something went wrong");
+  }
+};
+
+
+
+
+
 //Education
 export const getEducation = async (params) => {
   const token = params.queryKey[1];
