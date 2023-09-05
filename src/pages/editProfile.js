@@ -557,7 +557,7 @@ const EditProfile = () => {
             </>
           )}
 
-          <button className="loginButton" type="submit">
+          <button className="loginButton" type="submit" >
             {loading ? "Loading..." : "Save"}
           </button>
         </form>

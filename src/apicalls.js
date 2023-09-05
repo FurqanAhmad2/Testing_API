@@ -70,7 +70,8 @@ export const employeeRegister = async (req, dispatch, toast, navigate) => {
       "A confirmation mail has been sent to your email. Please confirm your account."
     );
     navigate("/signin");
-  } catch (err) {
+  } 
+  catch (err) {
     console.log(err);
     if (err.message==="Request failed with status code 400"){
       toast(
@@ -2185,14 +2186,14 @@ export const submitBillForm_01 = async (token,documentNumber, selectedFile, sele
 // };
 
 // Define the function to post a subscription
-export const postSubscription = async (token, subscription_id, reference_id, receipt_id, Transaction_Status, toast, navigate) => {
+export const postSubscription = async (token, subscription_id, reference_id, receipt_id, transaction_status, toast, navigate) => {
   try {
     // Define the request data object to be sent in the POST request
     const requestData = {
       subscription_id, // Include the 'id' field if needed
       reference_id,
       receipt_id,
-      Transaction_Status,
+      transaction_status,
     };
 
     // Make a POST request to the subscription endpoint

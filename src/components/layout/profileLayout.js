@@ -56,7 +56,7 @@ const ProfileLayout = (props) => {
     navigate("/kyc-verification");
   };
 
-  
+
   const handleGetVerified = () => {
     navigate("/Get-Verified");
   };
@@ -80,7 +80,7 @@ const ProfileLayout = (props) => {
           <div className="textContainer">
             <div className="mainTextContent ">
               <div className="flex flex-row py-2">
-              {profile?.isVerified === true ? (
+                {profile?.isVerified === true ? (
                   <img
                     src={Imgv}
                     className=""
@@ -93,14 +93,14 @@ const ProfileLayout = (props) => {
                 ) : (
                   <p className="text-red-500 px-4">Not Verified</p>
                 )}
-                
+
                 <div
-                style={{marginTop: '4px'}}>
-                <h2 className="font-bold text-4xl mt-2">{`${profile?.first_name} ${profile?.last_name}`}
-                </h2>
+                  style={{ marginTop: '4px' }}>
+                  <h2 className="font-bold text-4xl mt-2">{`${profile?.first_name} ${profile?.last_name}`}
+                  </h2>
                 </div>
-                
-               
+
+
 
 
 
@@ -154,7 +154,7 @@ const ProfileLayout = (props) => {
             </div>
 
 
-            {type === "EMPLOYEE" &&  (  // Conditionally render based on user type
+            {type === "EMPLOYEE" && (  // Conditionally render based on user type
               <div className="profileCompletion">
                 <span>Profile Completed:</span>
                 <div className="profileCompletionLine">
@@ -167,18 +167,21 @@ const ProfileLayout = (props) => {
                   {`${profile?.progess}% profile completed`}
                 </div>
                 {profile?.progess < 100 && (
-                <h2 className="font-bold text-3xl ">Profile Incomplete</h2>)}
+                  <h2 className="font-bold text-1xl ">Profile Incomplete</h2>)}
               </div>
-            )} 
-
-            {profile?.isVerified===false && type === "EMPLOYEE" && (
-              <button
-              className="mx-3 py-2 px-6 bg-blue-500 hover:bg-blue-600 text-white rounded-md shadow-md transition duration-300 ease-in-out focus:outline-none"
-              onClick={handleGetVerified}
-            >
-              <span>Get Verified</span>
-            </button>
             )}
+
+            {profile?.isVerified === false && type === "EMPLOYEE" && (
+              <button
+                style={{ padding: '6px 12px', fontSize: '14px' }}
+                className="mx-3 bg-blue-500 hover:bg-blue-600 text-white rounded-md shadow-md transition duration-300 ease-in-out focus:outline-none"
+                onClick={handleGetVerified}
+              >
+                <span>Get Verified</span>
+              </button>
+            )}
+
+
 
 
 
