@@ -37,7 +37,7 @@ export const initialFetch = async (dispatch) => {
 export const setCountry = async () => {
   try {
     const res = await axios.get("https://ipapi.co/json/");
-    
+
     localStorage.setItem(
       "User_ATS_Country",
       JSON.stringify(res.data.country_name)
@@ -57,6 +57,8 @@ export const signout = (dispatch) => {
 };
 
 export const employeeRegister = async (req, dispatch, toast, navigate) => {
+
+  
   dispatch({ type: "LOGIN_USER_START" });
   try {
     const res = await axios.post(`${BaseUrl}/user/register/`, req, {
@@ -70,9 +72,16 @@ export const employeeRegister = async (req, dispatch, toast, navigate) => {
     navigate("/signin");
   } catch (err) {
     console.log(err);
+    if (err.message==="Request failed with status code 400"){
+      toast(
+        err.response?.data?.message || "An Email Has Already Been Registered"
+      );
+    }
+    else{
     toast(
       err.response?.data?.message || "Something went wrong. Please try again."
     );
+    }
     dispatch({ type: "LOGIN_USER_FAILURE", payload: err });
   } finally {
     dispatch({ type: "LOGIN_USER_STOPFETCHING" });
@@ -119,9 +128,19 @@ export const employerRegister = async (req, dispatch, toast, navigate) => {
     navigate("/signin");
   } catch (err) {
     console.log(err);
+
+    if (err.message==="Request failed with status code 400"){
+      toast(
+        err.response?.data?.message || "An Email Has Already Been Registered"
+      );
+    }
+
+    else{
     toast(
       err.response?.data?.message || "Something went wrong. Please try again."
     );
+
+  }
     dispatch({ type: "LOGIN_USER_FAILURE", payload: err });
   } finally {
     dispatch({ type: "LOGIN_USER_STOPFETCHING" });

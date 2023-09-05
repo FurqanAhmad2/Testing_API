@@ -232,20 +232,39 @@ const PlansCandidate = () => {
 
                 <div className="pointsContainer">
                   <div className="points">
+
+
                     <div className="pricingRow">
                       <FontAwesomeIcon icon={faCircleCheck} className="icon" />
-                      <p>Up to 10 Jobs</p>
+                      <p>Post up to 20 jobs</p>
                     </div>
 
                     <div className="pricingRow">
                       <FontAwesomeIcon icon={faCircleCheck} className="icon" />
-                      <p>Up to 100 Candidates</p>
+                      <p>Basic candidate management and communication features.</p>
                     </div>
 
                     <div className="pricingRow">
                       <FontAwesomeIcon icon={faCircleCheck} className="icon" />
-                      <p>Up to 10 Hiring Managers</p>
+                      <p>Basic resume parsing</p>
                     </div>
+
+                    <div className="pricingRow">
+                      <FontAwesomeIcon icon={faCircleCheck} className="icon" />
+                      <p>Standard reporting and analytics</p>
+                    </div>
+
+                    <div className="pricingRow">
+                      <FontAwesomeIcon icon={faCircleCheck} className="icon" />
+                      <p>Email /Sms Alert</p>
+                    </div>
+
+                    <div className="pricingRow">
+                      <FontAwesomeIcon icon={faCircleCheck} className="icon" />
+                      <p>Email Customer Support</p>
+                    </div>
+
+                    
                   </div>
                 </div>
               </div>
