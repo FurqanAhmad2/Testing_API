@@ -37,6 +37,7 @@ export const initialFetch = async (dispatch) => {
 export const setCountry = async () => {
   try {
     const res = await axios.get("https://ipapi.co/json/");
+    
     localStorage.setItem(
       "User_ATS_Country",
       JSON.stringify(res.data.country_name)
