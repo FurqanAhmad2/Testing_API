@@ -20,7 +20,7 @@ import Footer from "../components/layout/footer/footer";
 // import paystackKey from './ConfigurePaystack'; // Make sure to adjust the path as needed
 
 
-const plansCandidate = () => {
+const PlansCandidate = () => {
   const navigate = useNavigate();
   const { token, subscriptionDetails } = useContext(AuthContext);
   const [toggle, setToggle] = useState(false);
@@ -446,4 +446,4 @@ const plansCandidate = () => {
   );
 };
 
-export default plansCandidate;
+export default PlansCandidate;

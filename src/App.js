@@ -82,7 +82,7 @@ import OverviewEmployer from "./pages/EmployerPages/overviewEmployer";
 import CandidateView from "./pages/EmployerPages/CandidateView";
 import KYCVerification from "./pages/KYCVerification";
 import CandidateProdecure from "./pages/Candidate_Prodecure";
-import PlansCandidate from "./pages/plansCandidate";
+import PlansCandidate from "./pages/PlansCandidates";
 import LDPCA from "./pages/LDPCA.js";
 
 const App = () => {
