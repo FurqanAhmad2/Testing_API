@@ -1115,23 +1115,13 @@ input {
 }
 
 .Toastify__progress-bar {
-  background: linear-gradient(to right, #ff0000, #ffa500, #ffff00, #00ff00, #0000ff, #4b0082, #ee82ee);
+  background: #044cac; /* Set a solid background color */
   background-size: 100%;
-  animation: rainbow 3s linear infinite;
 }
 
-@keyframes rainbow {
-  0% {
-    background-position: 0% 50%;
-  }
-  100% {
-    background-position: 100% 50%;
-  }
-}
 
-.Toastify__toast-body {
-  color: #000000;
-}
+
+
             {/* kyc button on page layout css*/}
 
 .kycButton {

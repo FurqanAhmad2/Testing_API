@@ -6,7 +6,13 @@ import { AuthContextProvider } from "./context/AuthContext";
 import ScrollToTop from "./components/scrollToTop";
 import { ProSidebarProvider } from "react-pro-sidebar";
 
+
+
+
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
+
 root.render(
   <React.StrictMode>
     <BrowserRouter>
