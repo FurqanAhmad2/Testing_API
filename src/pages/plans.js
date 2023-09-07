@@ -12,6 +12,7 @@ import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { getEmployeeProfile, signout } from "../apicalls";
 import { toast } from "react-toastify";
+import Countdown from 'react-countdown';
 import { PaystackButton } from 'react-paystack';
 import { PaystackConsumer } from 'react-paystack';
 import PaystackPop from "@paystack/inline-js";
@@ -23,6 +24,8 @@ import Footer from "../components/layout/footer/footer";
 const Plans = () => {
   const navigate = useNavigate();
   const { token, subscriptionDetails } = useContext(AuthContext);
+  const [showCountdown, setShowCountdown] = useState(false);
+
   const [toggle, setToggle] = useState(false);
 
   const {
@@ -58,14 +61,10 @@ const Plans = () => {
       email: "furqana405@gmail.com",
 
       onSuccess(transaction) {
-        let message = `Payment Complete! Refrence ${transaction.reference} Please Wait for a few moments here don't Refresh or Redirect to anyother Page`
-        alert(message)
-
+        setShowCountdown(true); // Show the countdown
         setTimeout(() => {
-          verifyTransaction(transaction.reference,id);
+          verifyTransaction(transaction.reference, id);
         }, 10000);
-
-
       },
       onCancel() {
         alert("You have Cancel Transaction")
@@ -437,6 +436,27 @@ const Plans = () => {
               </div>
             </div>
           </div>
+          
+          {showCountdown && (
+          <div className="countdown-overlay" style={showCountdown ? { display: 'block' } : { display: 'none' }}>
+          <div className="countdown-container">
+            <Countdown
+              date={Date.now() + 10000} // 10 seconds
+              onComplete={() => {
+                setShowCountdown(false); // Hide the countdown when it completes
+                navigate("/profile");
+              }}
+              renderer={({ hours, minutes, seconds }) => (
+                <div>
+                  <p>We are Verifying your Payment! Redirecting in:</p>
+                  <p>{`${minutes}:${seconds}`}</p>
+                </div>
+              )}
+            />
+          </div>
+        </div>
+        )}
+
         </div>
 
    

@@ -167,15 +167,25 @@ const ProfileLayout = (props) => {
                   {`${profile?.progess}% profile completed`}
                 </div>
                 {profile?.progess < 100 && (
-                  <h2 className="  "
-                  style={{fontSize: '12px'}}>Profile Incomplete</h2>)}
+
+                  <div>
+                  <h2 className="profileCompletionDescription  "
+                    style={{ fontSize: '12px',padding : "1%" }}>
+                      Profile </h2>
+
+                      <h2 className="profileCompletionDescription  "
+                    style={{ fontSize: '12px',paddingTop : "3%" }}>
+                       Incomplete</h2>
+                  </div>
+                      )}
               </div>
             )}
+            
 
             {profile?.isVerified === false && type === "EMPLOYEE" && (
               <button
                 style={{
-                  padding: '6px 8px',
+                  padding: '6px 4px',
                   fontSize: '14px',
                   backgroundColor: '#004aad', // Set the background color to #004aad
                 }}
@@ -185,6 +195,24 @@ const ProfileLayout = (props) => {
                 <span>Get Verified</span>
               </button>
             )}
+
+
+            {type === "EMPLOYER" && 
+               profile?.isVerified === false && (
+                <button
+                  style={{
+                    padding: '6px 8px',
+                    fontSize: '14px',
+                    width : '15%',
+                    backgroundColor: '#004aad', // Set the background color to #004aad
+                  }}
+                  className="mx-3 text-white rounded-md shadow-md transition duration-300 ease-in-out focus:outline-none"
+                  onClick={handleGetVerified}
+                >
+                  <span>Get Verified</span>
+                </button>
+              )}
+
 
 
 
