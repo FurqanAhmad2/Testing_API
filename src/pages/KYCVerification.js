@@ -112,6 +112,8 @@ const KYCVerification = () => {
 
   return (
     <div>
+
+
       <div className="kycBanner">
         <div className="kycBannerContent">
           <h1>What is KYC and Why Do You Need It?</h1>
@@ -127,80 +129,101 @@ const KYCVerification = () => {
         </p>
       </div>
 
-      <div className="kycCenterContainer">
+      <div className="flex flex-col items-center justify-center" style={{ marginTop: "1rem" }}>
 
 
-        <div className="file-kyc">
-          <label htmlFor="Label" className="label_01" >
-            ID type:
-          </label>
-          <select
-            id=""
-            className="Kyc_sel_input"
-            value={selectedID}
-            onChange={handleIDSelection}
-          >
-            {acceptedIDs.map((id) => (
-              <option key={id} value={id}>
-                {id}
-              </option>
-            ))}
-          </select>
-        </div>
+        <div className="w-full max-w-md p-4">
 
+          <div style={{marginBottom :'6%'}}>
+          <div className="mb-4">
+            <label htmlFor="Label" className="block text-gray-700">
+              ID type:
+            </label>
+            <select
+              id=""
+              className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-400"
+              value={selectedID}
+              onChange={handleIDSelection}
+            >
+              {acceptedIDs.map((id) => (
+                <option key={id} value={id}>
+                  {id}
+                </option>
+              ))}
+            </select>
+          </div>
 
+          {selectedID === "Others..." && (
+            <div className="mb-4">
+              <label htmlFor="otherDocument" className="block text-gray-700">
+                Document Name:
+              </label>
+              <input
+                type="text"
+                id="otherDocument"
+                className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-400"
+                value={otherDocument}
+                onChange={handleOtherDocument}
+                placeholder="Enter document name"
+              />
+            </div>
+          )}
+          </div>
 
-        {selectedID === "Others..." && (
-          <div className="">
-            <label htmlFor="">
-              Document Name:
+          <div className="mb-4"
+          style={{marginBottom :'6%'}}>
+            <label htmlFor="documentNumber" className="block text-gray-700">
+              Document Number:
             </label>
             <input
               type="text"
-              id="otherDocument"
-            className="Kyc_sel_input"
-      
-              value={otherDocument}
-              onChange={handleOtherDocument}
-              placeholder="Enter document name"
+              id="documentNumber"
+              className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-400"
+              value={documentNumber}
+              onChange={handleDocumentNumber}
+              placeholder="Enter document number"
             />
           </div>
-        )}
-        <div className="file-kyc mt-4 ">
-          <label htmlFor="" className="lab-kyc-doc">
-            Document Number:
-          </label>
-          <input
-            type="text"
-            id="documentNumber"
-            className="inputDoc"
 
-            value={documentNumber}
-            onChange={handleDocumentNumber}
-            placeholder="Enter document number"
-          />
-          <div className="uploadContainer">
-            <label htmlFor="fileInput" className="customButton customButtonFilled">
-              <FontAwesomeIcon icon={faCloudDownloadAlt} className="icon" />
-            </label>
-            <input
-              type="file"
-              id="fileInput"
-              accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
-              onChange={handleFileUpload}
-              style={{ display: "none" }}
-            />
+          <div className="mb-4"
+          style={{marginBottom :'6%'}}>
+            <div className="flex items-center">
+              <label htmlFor="fileInput" className="block text-gray-700 mr-2">
+                Upload Document:
+              </label>
+              <label htmlFor="fileInput" className="customButton customButtonFilled">
+                <FontAwesomeIcon icon={faCloudDownloadAlt} className="icon" />
+              </label>
+              <input
+                type="file"
+                id="fileInput"
+                accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
+                onChange={handleFileUpload}
+                className="hidden"
+              />
+            </div>
           </div>
-        </div>
-        <div className="buttonContainer">
-          <button
-            className="actionBtnContainer actionBtnContainerFilled"
-            onClick={handleSubmit}
-          >
-            Submit
-          </button>
+
+          <div className="mb-4"
+          style={{marginBottom :'6%'}}>
+            <button
+              className="w-full py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
+              style={{
+                width: '100%', // Set the desired width
+                height: '35px', // Set the desired height
+                fontSize: '16px',
+                backgroundColor: '#004aad',
+              }}
+              onClick={handleSubmit}
+            >
+              Submit
+            </button>
+          </div>
         </div>
       </div>
+
+
+
 
     </div>
   );

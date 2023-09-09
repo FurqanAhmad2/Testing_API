@@ -8,12 +8,15 @@ import { AuthContext } from "../../context/AuthContext";
 import ScreenError from "../../components/common/ScreenError/screenError";
 import { getApikey, postApikey, setSubscriptionDetails,getEmployeeProfile } from "../../apicalls";
 import ScreenMessage from "../../components/common/ScreenMessage/screenMessage";
+import ScreenPermissionError from "../../components/common/CurrentPlanError/screenPermissionError";
+
 import SubHeading1 from "../../components/common/SubHeading1/subHeading1";
 import ActionButton from "../../components/common/ActionButton/actionButton";
 
 const ApiKey = () => {
-  const { token } = useContext(AuthContext);
+
   const [apikey, setApikey] = useState("");
+  const { subscriptionDetails, dispatch, token } = useContext(AuthContext);
 
   const RefreshApikey = async () => {
     setApikey("***Loading***");
@@ -26,6 +29,14 @@ const ApiKey = () => {
     }
     setApikey(res.apikey);
   };
+
+  if (!subscriptionDetails) {
+    return (
+      <>
+        <ScreenPermissionError />
+      </>
+    );
+  }
 
 
   const {
@@ -52,7 +63,7 @@ const ApiKey = () => {
         </div>
       </div>
 
-      {profile?.isVerified && (
+
       <div className="profileMainContainer shadow">
         <div className="apiKeyContainer">
           <SubHeading1 text={"Get APIKEY"} />
@@ -74,14 +85,6 @@ const ApiKey = () => {
   
         </div>
       </div>
-
-      )} 
-      {!profile?.isVerified && (
-
-        <SubHeading1 text={"Please Get Verfiy for getting the APIKEY"} />
-
-      )}
-
     </>
   );
 };

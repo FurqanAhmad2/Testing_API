@@ -954,7 +954,7 @@ input {
   color: #666;
   margin-top: 5px;
 }
-              {/*Kyc Page css*/}
+            
 .kycBanner {
   margin-top: 20px;
   height: 280px;
@@ -983,6 +983,7 @@ input {
   display: flex;
   margin-left: 190px;
   margin-top: 40px;
+  justify-content: center;
   text-align: center;
 }
 .kycDescription p {
@@ -1122,7 +1123,7 @@ input {
 
 
 
-            {/* kyc button on page layout css*/}
+
 
 .kycButton {
   display: flex;
@@ -1229,7 +1230,7 @@ input {
   border: 1px solid #cccccc;
   height: 35px;
   margin-top: 5%;
-  width: 120%;
+  width: 100%;
 }
 
 @media (max-width: 700px) {
@@ -1256,9 +1257,10 @@ input {
   .kycDescription {
     width: 70%;
     display: flex;
-    margin-left: 8%;
+    margin-left: 15%;
     margin-top: 5%;
     text-align: center;
+    justify-content: center;
   }
   .label_01{
     width: auto;
@@ -1881,6 +1883,8 @@ input {
   padding-top: 80px;
   min-height: 60vh;
 }
+
+
 
 .resumeContainerUpload {
   max-width: 600px;
@@ -3037,6 +3041,9 @@ input {
     grid-template-columns: 200px 1fr;
   }
 }
+
+
+
 @media (max-width: 700px) {
   .jobSearchContainer .candidateSearchContent {
     grid-template-columns: 1fr;
@@ -3377,3 +3384,4 @@ input {
   text-align: center;
   font-size: 24px;
 }
+
