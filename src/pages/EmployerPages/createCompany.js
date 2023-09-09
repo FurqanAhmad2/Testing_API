@@ -7,6 +7,7 @@ import Breadcrumbs from "../../components/common/Breadcrumbs/breadcrumbs";
 import { AuthContext } from "../../context/AuthContext";
 import CountryStateCity from "../../countries+states+cities.json";
 import { useQuery } from "@tanstack/react-query";
+import { ca } from "date-fns/locale";
 
 const InitialFields = {
   name: "",
@@ -90,9 +91,7 @@ const CreateCompany = () => {
         navigate
       );
     } else {
-      if (
-        subscriptionDetails?.data?.subcription?.entity_limit < company.length
-      ) {
+      try{
         const res = await postCompany(
           token,
           companyFields,
@@ -100,7 +99,9 @@ const CreateCompany = () => {
           setLoading,
           navigate
         );
-      } else toast("Maximum number of Company reached. Please upgrade plan.");
+      }catch(e){
+        toast("Maximum number of Company reached. Please upgrade plan.");
+      }
     }
   };
 
