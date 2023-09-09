@@ -94,10 +94,12 @@ const JobPost = () => {
     setLoading(true);
     const data = { ...jobFields, skills: options.join(",") };
 
-    if (subscriptionDetails?.data?.subcription?.job_posting < jobs.length) {
+    try{
       const res = await postJob(token, data, toast, setLoading, navigate);
-    } else toast("Maximum number of Jobs reached. Please upgrade plan.");
-  };
+    }catch(e){
+      toast("Maximum number of Jobs reached. Please upgrade plan.");
+    }
+    } 
 
   useEffect(() => {
     if (countryIndex) {
