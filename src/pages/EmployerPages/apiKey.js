@@ -18,7 +18,21 @@ const ApiKey = () => {
   const [apikey, setApikey] = useState("");
   const { subscriptionDetails, dispatch, token } = useContext(AuthContext);
 
+  const {
+    isError,
+    isLoading: profileLoading,
+    data: profile,
+  } = useQuery({
+    queryKey: ["Profile", token],
+    queryFn: getEmployeeProfile,
+  });
+
+
+
+
   const RefreshApikey = async () => {
+
+
     setApikey("***Loading***");
     const res = await postApikey(token);
 
@@ -39,19 +53,7 @@ const ApiKey = () => {
   }
 
 
-  const {
-    isError,
-    isLoading: profileLoading,
-    data: profile,
-  } = useQuery({
-    queryKey: ["Profile", token],
-    queryFn: getEmployeeProfile,
-  });
 
-  useEffect(() => {
-    console.log(profile);
-    console.log(profile?.isVerified);
-  });
 
 
 
