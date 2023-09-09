@@ -94,12 +94,12 @@ const JobPost = () => {
     setLoading(true);
     const data = { ...jobFields, skills: options.join(",") };
 
-    try{
+    try {
       const res = await postJob(token, data, toast, setLoading, navigate);
-    }catch(e){
-        toast("Maximum number of Jobs reached. Please Upgrade Plan.");
+    } catch (e) {
+      toast("Maximum number of Jobs reached. Please Upgrade Plan.");
     }
-    } 
+  }
 
   useEffect(() => {
     if (countryIndex) {
@@ -563,10 +563,23 @@ const JobPost = () => {
               </div>
 
               <div class="text-center">
-                <button type="submit" class="btn btn-m theme-btn full-width">
+                <button
+                  type="submit"
+           
+                  style={{
+                    width: '100%', // Set the desired width
+                    height: '50px', // Set the desired height
+                    fontSize: '16px',
+                    backgroundColor: '#004aad',
+                  }}
+                  className="mx-3 text-white rounded-md shadow-md transition duration-300 ease-in-out focus:outline-none"
+                >
                   {loading ? "Loading..." : "Submit"}
                 </button>
+
               </div>
+
+              
             </form>
           </section>{" "}
         </div>

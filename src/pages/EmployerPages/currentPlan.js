@@ -8,6 +8,7 @@ import { AuthContext } from "../../context/AuthContext";
 import ScreenError from "../../components/common/ScreenError/screenError";
 import { setSubscriptionDetails } from "../../apicalls";
 import ScreenMessage from "../../components/common/ScreenMessage/screenMessage";
+import ScreenPermissionError from "../../components/common/CurrentPlanError/screenPermissionError";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBriefcase,
@@ -21,10 +22,17 @@ const CurrentPlan = () => {
 
   useEffect(() => {
     setSubscriptionDetails(token, dispatch);
+    console.log(subscriptionDetails);
   }, []);
 
-  if (!subscriptionDetails)
-    return <ScreenMessage message={"No Subscription Selected"} />;
+  if (!subscriptionDetails) {
+    return (
+      <>
+        <ScreenPermissionError />
+      </>
+    );
+  }
+  
 
   return (
     <>

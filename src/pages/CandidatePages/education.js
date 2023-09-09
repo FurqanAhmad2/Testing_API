@@ -49,6 +49,8 @@ const Education = () => {
       setModal(false);
       refetchEducation();
       setData({ ...InitialData });
+      window.location.reload();
+
     }
   };
 

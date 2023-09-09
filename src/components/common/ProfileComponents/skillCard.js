@@ -38,6 +38,8 @@ const SkillCard = ({ data, refetchSkill }) => {
     if (res === "SUCCESS") {
       refetchSkill();
       setModal(false);
+      window.location.reload();
+
     }
   };
 
@@ -49,6 +51,8 @@ const SkillCard = ({ data, refetchSkill }) => {
       refetchSkill();
       setModal(false);
       setDeleteLoading(false);
+      window.location.reload();
+
     }
   };
 

@@ -83,7 +83,6 @@ import CandidateView from "./pages/EmployerPages/CandidateView";
 import KYCVerification from "./pages/KYCVerification";
 import KYCVerificationEmployee from "./pages/KYCVerificationEmployee";
 import CandidateProdecure from "./pages/Candidate_Prodecure";
-import PlansCandidate from "./pages/PlansCandidates";
 import LDPCA from "./pages/LDPCA.js";
 
 const App = () => {
@@ -152,10 +151,7 @@ const App = () => {
                         element={<KYCVerificationEmployee />}
                       />
 
-                      <Route
-                        path="/Candidate-Plan"
-                        element={<PlansCandidate />}
-                      />
+                    
 
                       {/* Dashboard Subroutes */}
                       <Route path="/dashboard" element={<Outlet />}>

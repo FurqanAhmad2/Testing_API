@@ -49,6 +49,8 @@ const ExperienceCard = ({ data, refetchExperience }) => {
     if (res === "SUCCESS") {
       refetchExperience();
       setModal(false);
+      window.location.reload();
+
     }
   };
 
@@ -58,6 +60,7 @@ const ExperienceCard = ({ data, refetchExperience }) => {
     if (res === "SUCCESS") {
       refetchExperience();
       setModal(false);
+      window.location.reload();
     }
   };
 

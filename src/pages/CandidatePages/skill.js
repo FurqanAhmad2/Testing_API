@@ -41,6 +41,8 @@ const Skill = () => {
     if (res === "SUCCESS") {
       setModal(null);
       refetchSkill();
+      window.location.reload();
+
     }
   };
 

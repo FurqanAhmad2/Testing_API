@@ -111,6 +111,15 @@ const Plans = () => {
   }
 
 
+  const freeTrial=()=>{
+      // Call the function with the necessary arguments
+      const res = postSubscription(token,2, -1, -1,"SUCCESS",toast, navigate);
+      console.log('Billing response:', res);
+      toast.success("Payment submitted successfully.");
+      navigate("/profile");
+  }
+
+
 
   const HandleClick = (id) => {
     if (!token) {
@@ -183,15 +192,29 @@ const Plans = () => {
 
       }
 
-      
-      console.log(amount," to be paid")
-      paywithpaystack(amount,id);
 
+      if(amount>0){
+        console.log(amount," to be paid")
+        paywithpaystack(amount,id);
+  
+      }
+      else{
+        console.log(amount," to be paid")
+
+        freeTrial();
+      }
+      
+  
 
 
       // postSubscription({ subscription: id }, token, toast, navigate);
     }
   };
+
+
+  useEffect(()=>{
+    console.log(subscriptionDetails?.data?.subcription?.subcription_name)
+  })
 
   return (
     <>
@@ -249,7 +272,18 @@ const Plans = () => {
                 </div>
               </div>
 
-              <div className="priceBtnContainer">
+              {subscriptionDetails?.data?.subcription?.subcription_name==="Free Trial" ? (
+                 <div className="priceBtnContainer">
+                 <button
+                   className="priceBtn"
+                  
+                 >
+                   Selected
+                 </button>
+                 {/* {HandleClick(3)} */}
+               </div>
+              ):(
+                <div className="priceBtnContainer">
                 <button
                   className="priceBtn"
                   onClick={() => {
@@ -258,9 +292,10 @@ const Plans = () => {
                 >
                   Select
                 </button>
-
-                {/* {HandleClick(2)} */}
+                {/* {HandleClick(3)} */}
               </div>
+              )}
+             
             </div>
 
             <div className="pricingCard card2 shadow">
@@ -295,7 +330,18 @@ const Plans = () => {
                 </div>
               </div>
 
-              <div className="priceBtnContainer">
+              {subscriptionDetails?.data?.subcription?.subcription_name==="Basic" ? (
+                 <div className="priceBtnContainer">
+                 <button
+                   className="priceBtn"
+                  
+                 >
+                   Selected
+                 </button>
+                 {/* {HandleClick(3)} */}
+               </div>
+              ):(
+                <div className="priceBtnContainer">
                 <button
                   className="priceBtn"
                   onClick={() => {
@@ -306,6 +352,8 @@ const Plans = () => {
                 </button>
                 {/* {HandleClick(3)} */}
               </div>
+              )}
+             
             </div>
 
             <div className="pricingCard card3 shadow">
@@ -340,7 +388,18 @@ const Plans = () => {
                 </div>
               </div>
 
-              <div className="priceBtnContainer">
+              {subscriptionDetails?.data?.subcription?.subcription_name==="Professional" ? (
+                 <div className="priceBtnContainer">
+                 <button
+                   className="priceBtn"
+                  
+                 >
+                   Selected
+                 </button>
+                 {/* {HandleClick(3)} */}
+               </div>
+              ):(
+                <div className="priceBtnContainer">
                 <button
                   className="priceBtn"
                   onClick={() => {
@@ -349,7 +408,10 @@ const Plans = () => {
                 >
                   Select
                 </button>
+                {/* {HandleClick(3)} */}
               </div>
+              )}
+             
             </div>
 
             <div className="pricingCard card1 shadow">
@@ -384,7 +446,18 @@ const Plans = () => {
                 </div>
               </div>
 
-              <div className="priceBtnContainer">
+              {subscriptionDetails?.data?.subcription?.subcription_name==="Enterprise" ? (
+                 <div className="priceBtnContainer">
+                 <button
+                   className="priceBtn"
+                  
+                 >
+                   Selected
+                 </button>
+                 {/* {HandleClick(3)} */}
+               </div>
+              ):(
+                <div className="priceBtnContainer">
                 <button
                   className="priceBtn"
                   onClick={() => {
@@ -393,9 +466,10 @@ const Plans = () => {
                 >
                   Select
                 </button>
-
-                {/* {HandleClick(5)} */}
+                {/* {HandleClick(3)} */}
               </div>
+              )}
+             
             </div>
 
             <div className="pricingCard card2 shadow">

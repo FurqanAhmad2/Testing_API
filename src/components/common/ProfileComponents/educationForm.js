@@ -218,6 +218,7 @@ const EducationForm = ({
               type="button"
               onClick={() => {
                 handleDelete();
+              
               }}
             >
               <FontAwesomeIcon icon={faTrash} />

@@ -181,6 +181,7 @@ const ExperienceForm = ({
               type="button"
               onClick={() => {
                 handleDelete();
+           
               }}
             >
               <FontAwesomeIcon icon={faTrash} />

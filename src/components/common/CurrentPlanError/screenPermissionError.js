@@ -11,7 +11,7 @@ const ScreenPermissionError = () => {
     <div className="screenErrorContainer">
       <div className="errorScreenContent">
  
-        <h2 style={{color: '#004aad'}}>This feature is not available for the current plan.</h2>
+        <h2 style={{color: '#004aad'}}>No Subscription Selected</h2>
         <h2 style={{color: '#004aad'}}>Please Check our plans and upgrade to use this feature.</h2>
 
         <div style={{ marginTop: 20 }}>

@@ -45,6 +45,7 @@ const Experience = () => {
     if (res === "SUCCESS") {
       setModal(null);
       refetchExperience();
+      window.location.reload();
     }
   };
   if (experienceLoading) return <ScreenLoading />;

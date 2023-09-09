@@ -48,6 +48,8 @@ const EducationCard = ({ data, refetchEducation }) => {
     if (res === "SUCCESS") {
       refetchEducation();
       setModal(false);
+      window.location.reload();
+
     }
   };
 
@@ -57,6 +59,8 @@ const EducationCard = ({ data, refetchEducation }) => {
     if (res === "SUCCESS") {
       refetchEducation();
       setModal(false);
+      window.location.reload();
+
     }
   };
 

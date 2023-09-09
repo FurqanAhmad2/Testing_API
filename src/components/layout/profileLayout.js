@@ -29,10 +29,15 @@ const ProfileLayout = (props) => {
     queryKey: ["Profile", token],
     queryFn: getEmployeeProfile,
   });
-
+  
   useEffect(() => {
     console.log(profile);
   });
+
+  useEffect(() => {
+    console.log("useEffect ran");
+  }, [profile?.progess]);
+  
 
   const employeeTabs = [
     { name: "Education", path: "/profile/education" },
@@ -61,11 +66,18 @@ const ProfileLayout = (props) => {
     navigate("/Get-Verified");
   };
 
+  
+  const handleGetVerifiedEmployer = () => {
+    navigate("/kyc-verification");
+  };
+
+
 
 
   const handleExpe = () => {
     navigate("/profile/experience");
   };
+
 
 
 
@@ -207,7 +219,7 @@ const ProfileLayout = (props) => {
                     backgroundColor: '#004aad', // Set the background color to #004aad
                   }}
                   className="mx-3 text-white rounded-md shadow-md transition duration-300 ease-in-out focus:outline-none"
-                  onClick={handleGetVerified}
+                  onClick={handleGetVerifiedEmployer}
                 >
                   <span>Get Verified</span>
                 </button>

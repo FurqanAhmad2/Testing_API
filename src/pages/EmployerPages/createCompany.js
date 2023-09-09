@@ -320,10 +320,21 @@ const CreateCompany = () => {
             </div>
 
             <div class="text-center">
-              <button type="submit" class="btn btn-m theme-btn full-width">
-                {loading ? "Loading..." : "Submit"}
-              </button>
-            </div>
+                <button
+                  type="submit"
+           
+                  style={{
+                    width: '100%', // Set the desired width
+                    height: '50px', // Set the desired height
+                    fontSize: '16px',
+                    backgroundColor: '#004aad',
+                  }}
+                  className="mx-3 text-white rounded-md shadow-md transition duration-300 ease-in-out focus:outline-none"
+                >
+                  {loading ? "Loading..." : "Submit"}
+                </button>
+
+              </div>
           </form>
         </section>
       </div>
