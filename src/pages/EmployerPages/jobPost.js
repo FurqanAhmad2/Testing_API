@@ -97,7 +97,7 @@ const JobPost = () => {
     try{
       const res = await postJob(token, data, toast, setLoading, navigate);
     }catch(e){
-      toast("Maximum number of Jobs reached. Please upgrade plan.");
+      toast("Maximum number of Jobs reached. Please Upgrade Plan.");
     }
     } 
 
