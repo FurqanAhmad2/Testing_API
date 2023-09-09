@@ -81,9 +81,14 @@ import Resume from "./pages/CandidatePages/resume";
 import OverviewEmployer from "./pages/EmployerPages/overviewEmployer";
 import CandidateView from "./pages/EmployerPages/CandidateView";
 import KYCVerification from "./pages/KYCVerification";
+import Trial from "./pages/Trial";
 import KYCVerificationEmployee from "./pages/KYCVerificationEmployee";
 import CandidateProdecure from "./pages/Candidate_Prodecure";
 import LDPCA from "./pages/LDPCA.js";
+import Basic from "./pages/Basic";
+import Professional from "./pages/Professional";
+import Enterprise from "./pages/Enterprise";
+import Custom from "./pages/Custom";
 
 const App = () => {
   const {
@@ -133,11 +138,11 @@ const App = () => {
                         element={<FilesUpload />}
                       />
 
-                      
-                    <Route
+
+                      <Route
                         path="/Get-Verified"
                         element={<CandidateProdecure />}
-                      />  
+                      />
 
                       <Route path="/dei/:jobId" element={<EmployeeDei />} />
                       <Route
@@ -151,7 +156,7 @@ const App = () => {
                         element={<KYCVerificationEmployee />}
                       />
 
-                    
+
 
                       {/* Dashboard Subroutes */}
                       <Route path="/dashboard" element={<Outlet />}>
@@ -216,6 +221,33 @@ const App = () => {
                         path="/videoupload/:jobId"
                         element={<VideoUpload />}
                       />
+
+                      <Route
+                        path="/trial"
+                        element={<Trial />}
+                      />
+
+                      <Route
+                        path="/basic"
+                        element={<Basic />}
+                      />
+
+                      <Route
+                        path="/professional"
+                        element={<Professional />}
+                      />
+
+                      <Route
+                        path="/enterprise"
+                        element={<Enterprise />}
+                      />
+
+                      <Route
+                        path="/Custom"
+                        element={<Custom />}
+                      />
+
+
                       <Route path="/dei/:jobId" element={<EmployerDei />} />
                       <Route
                         path="/dei/:jobId/:employeeId"
@@ -250,7 +282,7 @@ const App = () => {
                             element={<CandidateSearch />}
                           />
 
-                          
+
                         </Route>
                       </Route>
 
@@ -279,7 +311,7 @@ const App = () => {
                     />
                   </Route>
                 )}
-<Route path="/candidateview/:id" element={<CandidateView/>}/>
+                <Route path="/candidateview/:id" element={<CandidateView />} />
                 {/* Unprotected Routes */}
                 <Route>
                   <Route

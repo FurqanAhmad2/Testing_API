@@ -1,5 +1,8 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
+  fa7,
+  faAngleRight,
+  faAnglesLeft,
   faCircleCheck,
   faToggleOff,
   faToggleOn,
@@ -16,7 +19,9 @@ import Countdown from 'react-countdown';
 import { PaystackButton } from 'react-paystack';
 import { PaystackConsumer } from 'react-paystack';
 import PaystackPop from "@paystack/inline-js";
+
 import Footer from "../components/layout/footer/footer";
+import { faAccessibleIcon } from "@fortawesome/free-brands-svg-icons";
 
 // import paystackKey from './ConfigurePaystack'; // Make sure to adjust the path as needed
 
@@ -49,7 +54,7 @@ const Plans = () => {
     queryFn: getEmployeeProfile,
   });
 
-  const paywithpaystack = (amount,id) => {
+  const paywithpaystack = (amount, id) => {
 
     const email = profile?.email;
     const paystack = new PaystackPop()
@@ -74,11 +79,11 @@ const Plans = () => {
   }
 
 
-  const  verifyTransaction= async (reference,id)=> {
+  const verifyTransaction = async (reference, id) => {
     const url = `https://api.paystack.co/transaction/verify/${reference}`;
     const headers = {
       // Authorization: `Bearer ${PayStackSecret}`
-         Authorization: `Bearer sk_test_64438f62e730e1dca4d92cf02c968a3417ba897c`
+      Authorization: `Bearer sk_test_64438f62e730e1dca4d92cf02c968a3417ba897c`
     };
 
     try {
@@ -88,17 +93,17 @@ const Plans = () => {
       console.log(data.data.reference);
       console.log(data.data.status);
 
-      let StatusPayment=""
-      if(data.data.status=="success"){
-        StatusPayment="SUCCESS"
-      }else{
-        StatusPayment="FAILURE"
+      let StatusPayment = ""
+      if (data.data.status == "success") {
+        StatusPayment = "SUCCESS"
+      } else {
+        StatusPayment = "FAILURE"
 
       }
 
-      
+
       // Call the function with the necessary arguments
-      const res = postSubscription(token,id, data.data.reference, data.data.receipt_number,StatusPayment,toast, navigate);
+      const res = postSubscription(token, id, data.data.reference, data.data.receipt_number, StatusPayment, toast, navigate);
       console.log('Billing response:', res);
       toast.success("Payment submitted successfully.");
       navigate("/profile");
@@ -111,12 +116,12 @@ const Plans = () => {
   }
 
 
-  const freeTrial=()=>{
-      // Call the function with the necessary arguments
-      const res = postSubscription(token,2, -1, -1,"SUCCESS",toast, navigate);
-      console.log('Billing response:', res);
-      toast.success("Payment submitted successfully.");
-      navigate("/profile");
+  const freeTrial = () => {
+    // Call the function with the necessary arguments
+    const res = postSubscription(token, 2, -1, -1, "SUCCESS", toast, navigate);
+    console.log('Billing response:', res);
+    toast.success("Payment submitted successfully.");
+    navigate("/profile");
   }
 
 
@@ -170,8 +175,8 @@ const Plans = () => {
           amount = 3500;
         }
       }
-      
-      else{
+
+      else {
         if (id == 2) {
           amount = 0;
         }
@@ -193,18 +198,18 @@ const Plans = () => {
       }
 
 
-      if(amount>0){
-        console.log(amount," to be paid")
-        paywithpaystack(amount,id);
-  
+      if (amount > 0) {
+        console.log(amount, " to be paid")
+        paywithpaystack(amount, id);
+
       }
-      else{
-        console.log(amount," to be paid")
+      else {
+        console.log(amount, " to be paid")
 
         freeTrial();
       }
-      
-  
+
+
 
 
       // postSubscription({ subscription: id }, token, toast, navigate);
@@ -212,9 +217,30 @@ const Plans = () => {
   };
 
 
-  useEffect(()=>{
-    console.log(subscriptionDetails?.data?.subcription?.subcription_name)
-  })
+  const navToTrail = () => {
+    navigate("/trial")
+  }
+
+  const navToBas = () => {
+    navigate("/basic")
+  }
+
+
+  const navToProf = () => {
+    navigate("/professional")
+  }
+
+  const navToEnterPrise = () => {
+    navigate("/enterprise")
+  }
+
+
+  const navToCustom = () => {
+    navigate("/custom")
+  }
+
+
+
 
   return (
     <>
@@ -256,46 +282,64 @@ const Plans = () => {
                   <div className="points">
                     <div className="pricingRow">
                       <FontAwesomeIcon icon={faCircleCheck} className="icon" />
-                      <p>Up to 10 Jobs</p>
+                      <p>Post up to 20 jobs</p>
                     </div>
 
                     <div className="pricingRow">
                       <FontAwesomeIcon icon={faCircleCheck} className="icon" />
-                      <p>Up to 100 Candidates</p>
+                      <p>Basic candidate management and communication features.</p>
                     </div>
 
                     <div className="pricingRow">
                       <FontAwesomeIcon icon={faCircleCheck} className="icon" />
-                      <p>Up to 10 Hiring Managers</p>
+                      <p>Basic resume parsing</p>
                     </div>
+
+                    <div className="pricingRow" onClick={navToTrail}>
+                      <FontAwesomeIcon icon={faAngleRight} className="icon" />
+                      <p
+                        style={{
+                          cursor: "pointer",
+                          textDecoration: "underline",
+                          display: "inline",
+                          marginLeft: "4px", // Add margin for spacing
+                        }}
+                      >
+                        Show more
+                      </p>
+                    </div>
+
+
+
+
                   </div>
                 </div>
               </div>
 
-              {subscriptionDetails?.data?.subcription?.subcription_name==="Free Trial" ? (
-                 <div className="priceBtnContainer">
-                 <button
-                   className="priceBtn"
-                  
-                 >
-                   Selected
-                 </button>
-                 {/* {HandleClick(3)} */}
-               </div>
-              ):(
+              {subscriptionDetails?.data?.subcription?.subcription_name === "Free Trial" ? (
                 <div className="priceBtnContainer">
-                <button
-                  className="priceBtn"
-                  onClick={() => {
-                    HandleClick(2);
-                  }}
-                >
-                  Select
-                </button>
-                {/* {HandleClick(3)} */}
-              </div>
+                  <button
+                    className="priceBtn"
+
+                  >
+                    Selected
+                  </button>
+                  {/* {HandleClick(3)} */}
+                </div>
+              ) : (
+                <div className="priceBtnContainer">
+                  <button
+                    className="priceBtn"
+                    onClick={() => {
+                      HandleClick(2);
+                    }}
+                  >
+                    Select
+                  </button>
+                  {/* {HandleClick(3)} */}
+                </div>
               )}
-             
+
             </div>
 
             <div className="pricingCard card2 shadow">
@@ -314,46 +358,66 @@ const Plans = () => {
                   <div className="points">
                     <div className="pricingRow">
                       <FontAwesomeIcon icon={faCircleCheck} className="icon" />
-                      <p>Up to 20 Jobs</p>
+                      <p>Up to 300 job postings </p>
                     </div>
 
                     <div className="pricingRow">
                       <FontAwesomeIcon icon={faCircleCheck} className="icon" />
-                      <p>Up to 5,000 Candidates</p>
+                      <p>Integration with popular job boards</p>
                     </div>
 
                     <div className="pricingRow">
                       <FontAwesomeIcon icon={faCircleCheck} className="icon" />
-                      <p>Up to 100 Hiring Managers</p>
+                      <p>Basic phone and email support</p>
                     </div>
+
+                    <div className="pricingRow" onClick={navToBas}>
+                      <FontAwesomeIcon icon={faAngleRight} className="icon" />
+                      <p
+                        style={{
+                          cursor: "pointer",
+                          textDecoration: "underline",
+                          display: "inline",
+                          marginLeft: "4px", // Add margin for spacing
+                        }}
+                      >
+                        Show more
+                      </p>
+                    </div>
+
+
+
+
+
+
                   </div>
                 </div>
               </div>
 
-              {subscriptionDetails?.data?.subcription?.subcription_name==="Basic" ? (
-                 <div className="priceBtnContainer">
-                 <button
-                   className="priceBtn"
-                  
-                 >
-                   Selected
-                 </button>
-                 {/* {HandleClick(3)} */}
-               </div>
-              ):(
+              {subscriptionDetails?.data?.subcription?.subcription_name === "Basic" ? (
                 <div className="priceBtnContainer">
-                <button
-                  className="priceBtn"
-                  onClick={() => {
-                    HandleClick(3);
-                  }}
-                >
-                  Select
-                </button>
-                {/* {HandleClick(3)} */}
-              </div>
+                  <button
+                    className="priceBtn"
+
+                  >
+                    Selected
+                  </button>
+                  {/* {HandleClick(3)} */}
+                </div>
+              ) : (
+                <div className="priceBtnContainer">
+                  <button
+                    className="priceBtn"
+                    onClick={() => {
+                      HandleClick(3);
+                    }}
+                  >
+                    Select
+                  </button>
+                  {/* {HandleClick(3)} */}
+                </div>
               )}
-             
+
             </div>
 
             <div className="pricingCard card3 shadow">
@@ -372,46 +436,62 @@ const Plans = () => {
                   <div className="points">
                     <div className="pricingRow">
                       <FontAwesomeIcon icon={faCircleCheck} className="icon" />
-                      <p>Up to 100 Jobs</p>
+                      <p>Up to 1000 job postings</p>
                     </div>
 
                     <div className="pricingRow">
                       <FontAwesomeIcon icon={faCircleCheck} className="icon" />
-                      <p>Up to 10,000 Candidates</p>
+                      <p>Automated interview scheduling</p>
                     </div>
 
                     <div className="pricingRow">
                       <FontAwesomeIcon icon={faCircleCheck} className="icon" />
-                      <p>Up to 1,000 Hiring Managers</p>
+                      <p>Collaboration tools for teams.</p>
                     </div>
+
+                    <div className="pricingRow" onClick={navToProf}>
+                      <FontAwesomeIcon icon={faAngleRight} className="icon" />
+                      <p
+                        style={{
+                          cursor: "pointer",
+                          textDecoration: "underline",
+                          display: "inline",
+                          marginLeft: "4px", // Add margin for spacing
+                        }}
+                      >
+                        Show more
+                      </p>
+                    </div>
+
+
                   </div>
                 </div>
               </div>
 
-              {subscriptionDetails?.data?.subcription?.subcription_name==="Professional" ? (
-                 <div className="priceBtnContainer">
-                 <button
-                   className="priceBtn"
-                  
-                 >
-                   Selected
-                 </button>
-                 {/* {HandleClick(3)} */}
-               </div>
-              ):(
+              {subscriptionDetails?.data?.subcription?.subcription_name === "Professional" ? (
                 <div className="priceBtnContainer">
-                <button
-                  className="priceBtn"
-                  onClick={() => {
-                    HandleClick(4);
-                  }}
-                >
-                  Select
-                </button>
-                {/* {HandleClick(3)} */}
-              </div>
+                  <button
+                    className="priceBtn"
+
+                  >
+                    Selected
+                  </button>
+                  {/* {HandleClick(3)} */}
+                </div>
+              ) : (
+                <div className="priceBtnContainer">
+                  <button
+                    className="priceBtn"
+                    onClick={() => {
+                      HandleClick(4);
+                    }}
+                  >
+                    Select
+                  </button>
+                  {/* {HandleClick(3)} */}
+                </div>
               )}
-             
+
             </div>
 
             <div className="pricingCard card1 shadow">
@@ -430,46 +510,62 @@ const Plans = () => {
                   <div className="points">
                     <div className="pricingRow">
                       <FontAwesomeIcon icon={faCircleCheck} className="icon" />
-                      <p>Unlimited Jobs</p>
+                      <p>Up to 3000 job postings</p>
                     </div>
 
                     <div className="pricingRow">
                       <FontAwesomeIcon icon={faCircleCheck} className="icon" />
-                      <p>Unlimited Candidates</p>
+                      <p>Compliance and security features</p>
                     </div>
 
                     <div className="pricingRow">
                       <FontAwesomeIcon icon={faCircleCheck} className="icon" />
-                      <p>Unlimited Hiring Managers</p>
+                      <p>Integration with third-party assessment tools</p>
                     </div>
+
+                    <div className="pricingRow" onClick={navToEnterPrise}>
+                      <FontAwesomeIcon icon={faAngleRight} className="icon" />
+                      <p
+                        style={{
+                          cursor: "pointer",
+                          textDecoration: "underline",
+                          display: "inline",
+                          marginLeft: "4px", // Add margin for spacing
+                        }}
+                      >
+                        Show more
+                      </p>
+                    </div>
+
+
                   </div>
                 </div>
               </div>
 
-              {subscriptionDetails?.data?.subcription?.subcription_name==="Enterprise" ? (
-                 <div className="priceBtnContainer">
-                 <button
-                   className="priceBtn"
-                  
-                 >
-                   Selected
-                 </button>
-                 {/* {HandleClick(3)} */}
-               </div>
-              ):(
+              {subscriptionDetails?.data?.subcription?.subcription_name === "Enterprise" ? (
                 <div className="priceBtnContainer">
-                <button
-                  className="priceBtn"
-                  onClick={() => {
-                    HandleClick(5);
-                  }}
-                >
-                  Select
-                </button>
-                {/* {HandleClick(3)} */}
-              </div>
+                  <button
+                    className="priceBtn"
+
+                  >
+                    Selected
+                  </button>
+                  {/* {HandleClick(3)} */}
+                </div>
+              ) : (
+                <div className="priceBtnContainer">
+                  <button
+                    className="priceBtn"
+                    onClick={() => {
+                      HandleClick(5);
+                    }}
+                  >
+                    Select
+                  </button>
+                  {/* {HandleClick(3)} */}
+                </div>
               )}
-             
+
             </div>
 
             <div className="pricingCard card2 shadow">
@@ -487,18 +583,31 @@ const Plans = () => {
                   <div className="points">
                     <div className="pricingRow">
                       <FontAwesomeIcon icon={faCircleCheck} className="icon" />
-                      <p>Everything in Enterprise Plan</p>
+                      <p>Fully tailored features based on specific organizational needs</p>
                     </div>
 
                     <div className="pricingRow">
                       <FontAwesomeIcon icon={faCircleCheck} className="icon" />
-                      <p>Custom Features</p>
+                      <p>Advanced data privacy and compliance features</p>
                     </div>
 
-                    <div className="pricingRow">
-                      <FontAwesomeIcon icon={faCircleCheck} className="icon" />
-                      <p>Custom Integrations</p>
+                  
+
+                    <div className="pricingRow" onClick={navToCustom}>
+                      <FontAwesomeIcon icon={faAngleRight} className="icon" />
+                      <p
+                        style={{
+                          cursor: "pointer",
+                          textDecoration: "underline",
+                          display: "inline",
+                          marginLeft: "4px", // Add margin for spacing
+                        }}
+                      >
+                        Show more
+                      </p>
                     </div>
+
+
                   </div>
                 </div>
               </div>
@@ -510,32 +619,32 @@ const Plans = () => {
               </div>
             </div>
           </div>
-          
+
           {showCountdown && (
-          <div className="countdown-overlay" style={showCountdown ? { display: 'block' } : { display: 'none' }}>
-          <div className="countdown-container">
-            <Countdown
-              date={Date.now() + 10000} // 10 seconds
-              onComplete={() => {
-                setShowCountdown(false); // Hide the countdown when it completes
-                navigate("/profile");
-              }}
-              renderer={({ hours, minutes, seconds }) => (
-                <div>
-                  <p>We are Verifying your Payment! Redirecting in:</p>
-                  <p>{`${minutes}:${seconds}`}</p>
-                </div>
-              )}
-            />
-          </div>
-        </div>
-        )}
+            <div className="countdown-overlay" style={showCountdown ? { display: 'block' } : { display: 'none' }}>
+              <div className="countdown-container">
+                <Countdown
+                  date={Date.now() + 10000} // 10 seconds
+                  onComplete={() => {
+                    setShowCountdown(false); // Hide the countdown when it completes
+                    navigate("/profile");
+                  }}
+                  renderer={({ hours, minutes, seconds }) => (
+                    <div>
+                      <p>We are Verifying your Payment! Redirecting in:</p>
+                      <p>{`${minutes}:${seconds}`}</p>
+                    </div>
+                  )}
+                />
+              </div>
+            </div>
+          )}
 
         </div>
 
-   
+
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 };

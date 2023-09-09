@@ -160,22 +160,22 @@ const CandidateProdecure = () => {
 
         {showCountdown ? (
           <div className="countdown-overlay" style={showCountdown ? { display: 'block' } : { display: 'none' }}>
-          <div className="countdown-container">
-            <Countdown
-              date={Date.now() + 10000} // 10 seconds
-              onComplete={() => {
-                setShowCountdown(false); // Hide the countdown when it completes
-                navigate("/profile");
-              }}
-              renderer={({ hours, minutes, seconds }) => (
-                <div>
-                  <p>We are Verifying your Payment! Redirecting in:</p>
-                  <p>{`${minutes}:${seconds}`}</p>
-                </div>
-              )}
-            />
+            <div className="countdown-container">
+              <Countdown
+                date={Date.now() + 10000} // 10 seconds
+                onComplete={() => {
+                  setShowCountdown(false); // Hide the countdown when it completes
+                  navigate("/profile");
+                }}
+                renderer={({ hours, minutes, seconds }) => (
+                  <div>
+                    <p>We are Verifying your Payment! Redirecting in:</p>
+                    <p>{`${minutes}:${seconds}`}</p>
+                  </div>
+                )}
+              />
+            </div>
           </div>
-        </div>
         ) : (
           <div className="buttonContainer">
             <button
@@ -193,40 +193,80 @@ const CandidateProdecure = () => {
 
 
       </div>
-      <div className="kycDescription">
-        <p className="kycParagraph">
-          In today's world, where information is readily available, employers are becoming more cautious when hiring new talent. They want to ensure that they are making informed decisions when selecting candidates for their organizations. This is where our Background Check Services come into play. <br />
+      <div className="kycDescription text-center" 
+      >
+  <ul className="list-disc ml-6">
+    <li className="text-left">
+      In today's world, where information is readily available, employers are
+      becoming more cautious when hiring new talent. They want to ensure that
+      they are making informed decisions when selecting candidates for their
+      organizations. This is where our Background Check Services come into
+      play.
+    </li>
+    <li className="text-left"
+    style={{marginTop: '2%'}}>
+      The Power of a Verified Profile: A verified profile carries a distinct
+      mark of credibility, setting you apart from the crowd. It's a symbol of
+      trustworthiness and integrity that employers value. Here's why you should
+      consider getting your profile verified:
+      <ul className="list-disc ml-6">
+        <li className="text-left">
+          Enhanced Credibility: A verified mark beside your profile demonstrates
+          that you are who you claim to be. This significantly boosts your
+          credibility in the eyes of potential employers.
+        </li>
+        <li className="text-left">
+          Increased Trust: Employers are more likely to trust candidates with
+          verified profiles, reducing their doubts about your qualifications and
+          background.
+        </li>
+        <li className="text-left">
+          Expanded Reach: Verified profiles often receive more attention from
+          employers and are more likely to get shortlisted for interviews. This
+          means you'll have access to a wider range of job opportunities.
+        </li>
+        <li className="text-left">
+          Competitive Advantage: In a competitive job market, a verified profile
+          gives you an edge over other candidates who haven't undergone
+          background checks.
+        </li>
+      </ul>
+    </li>
+    <li className="text-left"
+     style={{marginTop: '2%', marginBottom :'3%'}}>
+      Our Verification Process:
+      <ul className="list-disc ml-6">
+        <li className="text-left">
+          Personal Information Verification: We validate your personal details,
+          such as your name, address, and contact information, to confirm their
+          accuracy.
+        </li>
+        <li className="text-left">
+          Education and Qualification Verification: We verify your educational
+          qualifications and certifications to ensure they are genuine.
+        </li>
+        <li className="text-left">
+          Employment History Verification: We check your employment history to
+          confirm your work experience, job titles, and responsibilities.
+        </li>
+        <li className="text-left">
+          Criminal Background Check: We conduct a comprehensive criminal
+          background check to ensure there are no red flags.
+        </li>
+        <li className="text-left">
+          Reference Verification: We contact your provided references to
+          validate your professional reputation.
+        </li>
+        <li className="text-left">
+          Identity Verification: We confirm your identity through official
+          documents to prevent impersonation.
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
 
-          The Power of a Verified Profile
 
-          A verified profile carries a distinct mark of credibility, setting you apart from the crowd. It's a symbol of trustworthiness and integrity that employers value. Here's why you should consider getting your profile verified:<br />
-
-          <br />1. Enhanced Credibility: A verified mark beside your profile demonstrates that you are who you claim to be. This significantly boosts your credibility in the eyes of potential employers.
-
-          <br />2. Increased Trust: Employers are more likely to trust candidates with verified profiles, reducing their doubts about your qualifications and background.
-
-          <br />3. Expanded Reach: Verified profiles often receive more attention from employers and are more likely to get shortlisted for interviews. This means you'll have access to a wider range of job opportunities.
-
-          <br />4. Competitive Advantage: In a competitive job market, a verified profile gives you an edge over other candidates who haven't undergone background checks.
-
-          <br />Our Verification Process
-
-          <br />Our thorough verification process ensures the accuracy and authenticity of your profile:
-
-          <br />1. Personal Information Verification: We validate your personal details, such as your name, address, and contact information, to confirm their accuracy.
-
-          <br />2. Education and Qualification Verification: We verify your educational qualifications and certifications to ensure they are genuine.
-
-          <br />3. Employment History Verification: We check your employment history to confirm your work experience, job titles, and responsibilities.
-
-          <br />4. Criminal Background Check: We conduct a comprehensive criminal background check to ensure there are no red flags.
-
-          <br />5. Reference Verification: We contact your provided references to validate your professional reputation.
-
-          <br />6. Identity Verification: We confirm your identity through official documents to prevent impersonation.
-
-        </p>
-      </div>
 
 
       <Footer />
