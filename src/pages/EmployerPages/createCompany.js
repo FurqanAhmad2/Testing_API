@@ -81,6 +81,7 @@ const CreateCompany = () => {
   const HandleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    console.log("Here")
     if (companyId) {
       const res = await patchCompany(
         token,
